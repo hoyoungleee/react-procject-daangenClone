@@ -4,7 +4,7 @@ const SearchBox = () => {
   return (
     <div className={styles.side}>
       <form>
-        <button>
+        <button className={styles.leftButton}>
           중고거래
           <svg
             viewBox='0 0 24 24'
@@ -25,7 +25,7 @@ const SearchBox = () => {
           </svg>
         </button>
         <div>
-          <input />
+          <input placeholder='검색어를 입력하세요' />
           <button className={styles.ArrowButton}>
             <svg
               viewBox='0 0 24 24'
@@ -49,7 +49,32 @@ const SearchBox = () => {
           </button>
         </div>
       </form>
-      <div className={styles.showKeyword}></div>
+      <div className={styles.showKeyword}>
+        인기검색어
+        <a href='#'> 메롱 </a>
+        <a href='#'> 메롱 </a>
+        <a href='#'> 메롱 </a>
+        <a href='#'> 메롱 </a>
+        <a href='#'> 메롱 </a>
+        <a href='#'> 메롱 </a>
+        <a href='#'> 메롱 </a>
+        <a href='#'> 메롱 </a>
+        <a href='#'> 메롱 </a>
+        <a href='#'> 메롱 </a>
+        <a href='#'> 메롱 </a>
+        <a href='#'> 메롱 </a>
+        <a href='#'> 메롱 </a>
+        <a href='#'> 메롱 </a>
+        <a href='#'> 메롱 </a>
+        <a href='#'> 메롱 </a>
+        <a href='#'> 메롱 </a>
+        <a href='#'> 메롱 </a>
+        <a href='#'> 메롱 </a>
+        <a href='#'> 메롱 </a>
+        <a href='#'> 메롱 </a>
+        <a href='#'> 메롱 </a>
+        <a href='#'> 메롱 </a>
+      </div>
     </div>
   );
 };

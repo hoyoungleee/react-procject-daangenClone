@@ -15,25 +15,46 @@ form {
     flex-grow: 1;
   }
 
-  button {
+  .leftButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 48px;
     font-weight: 700;
     color: #586070;
     background-color: transparent;
     border: none;
+    flex-grow: 0.06;
+  }
+
+  .leftButton::after {
+    content: '|';
+    margin-left: 10px;
   }
 
   input {
     background-color: transparent;
     align-items: stretch;
     flex-grow: 1;
+    font-size: 18px;
+    color: #1a1c20;
+    border: none;
   }
 
   .ArrowButton {
+    background-color: transparent;
     flex-grow: 0.05;
+    border: none;
   }
 }
 
 .showKeyword {
   height: 48px;
+  padding: 12px 0 12px 6px;
+  font-size: 0.875rem;
+  color: #868b94;
+
+  a {
+    margin-left: 5px;
+  }
 }
