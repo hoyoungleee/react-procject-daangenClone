@@ -64,16 +64,6 @@ const SearchBox = () => {
         <a href='#'> 메롱 </a>
         <a href='#'> 메롱 </a>
         <a href='#'> 메롱 </a>
-        <a href='#'> 메롱 </a>
-        <a href='#'> 메롱 </a>
-        <a href='#'> 메롱 </a>
-        <a href='#'> 메롱 </a>
-        <a href='#'> 메롱 </a>
-        <a href='#'> 메롱 </a>
-        <a href='#'> 메롱 </a>
-        <a href='#'> 메롱 </a>
-        <a href='#'> 메롱 </a>
-        <a href='#'> 메롱 </a>
       </div>
     </div>
   );
