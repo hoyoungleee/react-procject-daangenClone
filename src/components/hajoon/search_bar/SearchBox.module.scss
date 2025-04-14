@@ -5,8 +5,33 @@
 }
 
 form {
+  display: flex;
   border: 1px solid #dcdee3;
+  border-radius: 44px;
   height: 48px;
+
+  div {
+    display: flex;
+    flex-grow: 1;
+  }
+
+  button {
+    height: 48px;
+    font-weight: 700;
+    color: #586070;
+    background-color: transparent;
+    border: none;
+  }
+
+  input {
+    background-color: transparent;
+    align-items: stretch;
+    flex-grow: 1;
+  }
+
+  .ArrowButton {
+    flex-grow: 0.05;
+  }
 }
 
 .showKeyword {
