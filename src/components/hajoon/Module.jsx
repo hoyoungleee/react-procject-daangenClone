@@ -5,13 +5,13 @@ const Module = () => {
   const keyWord = [
     '맛집',
     '아이폰',
-    '동네친구',
+    '친구',
     '카페',
     '알바',
     '중고차',
     '원룸',
     '자전거',
-    '러닝 모임',
+    '모임',
   ];
 
   const [index, setIndex] = useState(0);
@@ -43,7 +43,18 @@ const Module = () => {
       </svg>
       <h2>
         한남동에서
-        <span className={styles.slideWord}>{` ${keyWord[index]} `}</span>
+        <span className={styles.wordcontainer}>
+          <span className={styles.wordSlider}>
+            {keyWord.map((word, idx) => {
+              return (
+                <span key={idx} className={styles.word}>
+                  {word}
+                </span>
+              );
+            })}
+            <span className={styles.word}>{keyWord[0]}</span>
+          </span>
+        </span>
         찾고 계신가요?
       </h2>
     </div>

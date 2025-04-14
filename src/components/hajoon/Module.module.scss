@@ -15,22 +15,77 @@
 h2 {
   font-size: 38px;
   align-self: center;
-  overflow: hidden;
-
-  .activeWord {
-    margin: 0 6px;
-    display: inline-block;
-    animation: fadeUp 0.5s ease-in-out;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
+.wordcontainer {
+  height: 38px;
+  overflow: hidden;
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  line-height: 38px;
+  vertical-align: middle;
+}
+
+.wordSlider {
+  display: flex;
+  flex-direction: column;
+  animation: slide-up-fade 20s ease-in-out infinite;
+}
+
+.word {
+  height: 38px;
+  text-align: center;
+  line-height: 34px;
+  display: block;
+  align-items: center;
+  justify-content: center;
+  font-size: 38px;
+  opacity: 1;
+}
+
+@keyframes slide-up-fade {
+  0%,
+  10% {
     transform: translateY(0);
+  }
+  11%,
+  21% {
+    transform: translateY(-38px);
+  }
+  22%,
+  32% {
+    transform: translateY(-76px);
+  }
+  33%,
+  43% {
+    transform: translateY(-114px);
+  }
+  44%,
+  54% {
+    transform: translateY(-152px);
+  }
+  55%,
+  65% {
+    transform: translateY(-190px);
+  }
+  66%,
+  76% {
+    transform: translateY(-228px);
+  }
+  77%,
+  87% {
+    transform: translateY(-266px);
+  }
+  88%,
+  98% {
+    transform: translateY(-304px);
+  }
+  99%,
+  100% {
+    transform: translateY(-342px);
   }
 }
