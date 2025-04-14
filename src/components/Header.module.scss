@@ -1,0 +1,136 @@
+.header {
+  background-color: #141414;
+  width: 100%;
+  padding: 0.5rem 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  .logo {
+    height: 30px;
+    width: auto;
+  }
+}
+
+.menu {
+  display: flex;
+  gap: 1.5rem;
+  padding: 20px;
+
+  .menuItem {
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    position: relative;
+
+    &.active {
+      color: white;
+
+      .dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+    }
+
+    .menuText {
+      display: flex;
+      font-weight: bold;
+      align-items: center;
+
+      .arrowIcon {
+        font-size: 10px;
+        padding-left: 5px;
+      }
+    }
+
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: rgb(54, 52, 52);
+      color: white;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      padding: 8px;
+      z-index: 10;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.2s ease-in-out;
+
+      .dropdownItem {
+        padding: 8px 5px;
+        font-size: 13px;
+        white-space: nowrap;
+        cursor: pointer;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .subIcon {
+          margin-left: 8px;
+        }
+      }
+    }
+  }
+}
+
+.right {
+  .downloadBtn {
+    position: relative;
+    background-color: #ea7221;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    padding: 0.4rem 0.7rem;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.2);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      z-index: 1;
+      border-radius: 6px;
+    }
+
+    &:hover::after {
+      opacity: 1;
+    }
+
+    span {
+      position: relative;
+      z-index: 2;
+    }
+  }
+}
