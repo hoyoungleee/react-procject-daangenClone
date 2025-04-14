@@ -3,13 +3,14 @@ import styles from './Header.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { SlArrowDown } from 'react-icons/sl';
 import { GoArrowUpRight } from 'react-icons/go';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const navigate = useNavigate();
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const menuItems = [
-    { title: '중고거래' },
+    { title: '중고거래', url: '/used-items' },
     {
       title: '부동산',
       submenu: ['부동산 검색', '중개사 서비스'],
@@ -22,7 +23,7 @@ const Header = () => {
       submenu: ['알바 검색', '당근알바 소개', '기업형 서비스', '신뢰와 안전'],
     },
     { title: '동네업체' },
-    { title: '동네생활' },
+    { title: '동네생활', url: '/community' },
     { title: '모임' },
   ];
 
@@ -47,15 +48,12 @@ const Header = () => {
                 : ''
             }`;
 
-            return (
+            const content = (
               <div
-                key={index}
                 className={menuItemClass}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={(e) => {
-                  // 타임아웃을 사용하여 바로 사라지지 않게 함
                   setTimeout(() => {
-                    // 타임아웃 내에서 다시 현재 상태를 확인
                     if (
                       !e.relatedTarget ||
                       !e.relatedTarget.closest(`.${styles.dropdown}`)
@@ -74,7 +72,6 @@ const Header = () => {
                 {item.submenu && hoveredIndex === index && (
                   <div
                     className={styles.dropdown}
-                    // Remove onMouseLeave from dropdown to prevent unexpected closing
                     onMouseEnter={() => setHoveredIndex(index)}
                   >
                     {item.submenu.map((subItem, subIndex) => (
@@ -99,6 +96,14 @@ const Header = () => {
                   </div>
                 )}
               </div>
+            );
+
+            return item.url ? (
+              <Link key={index} to={item.url} className={styles.linkWrapper}>
+                {content}
+              </Link>
+            ) : (
+              <div key={index}>{content}</div>
             );
           })}
         </nav>
