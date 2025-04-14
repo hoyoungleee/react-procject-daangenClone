@@ -1,11 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './SearchBox.module.scss';
 const SearchBox = () => {
+  const [isClick, setIsClick] = useState(false);
+
+  const clickButton = (e) => {
+    e.preventDefault();
+    setIsClick((prev) => !prev);
+  };
+
+  const categories = [
+    '중고거래',
+    '동네업체',
+    '알바',
+    '부동산',
+    '자동차',
+    '모임',
+  ];
+
+  const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+
+  const categoryHandler = (category) => {
+    setSelectedCategory(category);
+    setIsClick(false);
+  };
+
   return (
     <div className={styles.side}>
       <form>
-        <button className={styles.leftButton}>
-          중고거래
+        <button className={styles.leftButton} onClick={clickButton}>
+          {selectedCategory}
           <svg
             viewBox='0 0 24 24'
             fill='none'
@@ -24,6 +47,17 @@ const SearchBox = () => {
             </g>
           </svg>
         </button>
+
+        {isClick && (
+          <ul className={styles.dropdown}>
+            {categories.map((itm, idx) => (
+              <li key={idx} onClick={() => categoryHandler(itm)}>
+                {itm}
+              </li>
+            ))}
+          </ul>
+        )}
+
         <div>
           <input placeholder='검색어를 입력하세요' />
           <button className={styles.ArrowButton}>
