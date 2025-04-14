@@ -1,4 +1,5 @@
 .layout {
+<<<<<<< Updated upstream
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -28,8 +29,39 @@
     text-align: center;
 
     .container {
+=======
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  
+    .header {
+      background-color: #1a1a1a;
+      color: white;
+      padding: 1rem;
+  
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem;
+      }
+    }
+  
+    .main {
+      flex: 1;
+>>>>>>> Stashed changes
       max-width: 1200px;
       margin: 0 auto;
+      padding: 2rem;
+    }
+  
+    .footer {
+      background-color: #f5f5f5;
+      padding: 1rem;
+      text-align: center;
+  
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
     }
   }
-}
