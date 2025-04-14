@@ -15,6 +15,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true, // 부모 경로가 활성화 되었을 때 기본으로 사용할 컴포넌트
+        //메인화면 경로
         element: <IndexPage />,
       },
       {
