@@ -1,9 +1,11 @@
 .category {
   display: flex;
   flex-direction: column;
-  width: 1050px;
+  width: 1240px;
   height: 104px;
   margin-top: 48px;
+  box-sizing: border-box;
+  justify-content: center;
 
   ul {
     width: 900px;
@@ -13,5 +15,6 @@
     display: flex;
     justify-content: space-between;
     box-sizing: border-box;
+    align-self: center;
   }
 }
