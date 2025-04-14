@@ -12,7 +12,7 @@ export const posts = [
     id: 1,
     title: 'React Router 시작하기',
     excerpt:
-      'React Router를 사용하여 SPA를 구축하는 방법을 알아봅시다. 라우터의 기본 개념부터 실전 활용까지 자세히 다룹니다.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+      'React Router를 사용하여 SPA를 구축하는 방법을 알아봅시다. 라우터의 기본 개념부터 실전 활용까지 자세히 다룹니다.',
     date: '2024-01-31',
     category: 'react',
     author: '김개발',

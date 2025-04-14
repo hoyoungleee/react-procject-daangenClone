@@ -5,10 +5,11 @@ import AboutPage from '../pages/AboutPage';
 import RootLayout from '../layouts/RootLayout';
 import ErrorPage from '../pages/ErrorPage';
 import BlogPostDetail from '../pages/BlogPostDetail';
+import ProductDetailsPage from '../pages/ProductDetailsPage';
 import CommunityPage from '../pages/CommunityPage';
 import CommunityPageDetail from '../pages/CommunityPageDetail';
 
-// 라우터 설정
+// 라우터 설정 
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -16,13 +17,26 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        index: true, // 부모 경로가 활성화 되었을 때 기본으로 사용할 컴포넌트
-        //메인화면 경로
+        index: true, // 부모 경로가 활성화 되었을 때 기본적으로 사용할 컴포넌트
         element: <IndexPage />,
+      },
+
+      {
+        // :postId -> 경로에 붙는 파라미터 (/blog/1, /blog/7)
+        path: 'blog',
+        element: <BlogPage />,
+      },
+      {
+        path: 'blog/:postId',
+        element: <BlogPostDetail />,
       },
       {
         path: 'about',
         element: <AboutPage />,
+      },
+      {
+        path: 'productDetail',
+        element: <ProductDetailsPage />,
       },
       {
         path: 'community',
