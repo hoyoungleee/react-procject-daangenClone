@@ -9,7 +9,7 @@ import ProductDetailsPage from '../pages/ProductDetailsPage';
 import CommunityPage from '../pages/CommunityPage';
 import CommunityPageDetail from '../pages/CommunityPageDetail';
 
-// 라우터 설정 
+// 라우터 설정
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -35,7 +35,7 @@ export const router = createBrowserRouter([
         element: <AboutPage />,
       },
       {
-        path: 'productDetail',
+        path: 'products/:id',
         element: <ProductDetailsPage />,
       },
       {
