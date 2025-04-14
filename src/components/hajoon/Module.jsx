@@ -1,7 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Module.module.scss';
 
 const Module = () => {
+  const keyWord = [
+    '맛집',
+    '아이폰',
+    '동네친구',
+    '카페',
+    '알바',
+    '중고차',
+    '원룸',
+    '자전거',
+    '러닝 모임',
+  ];
+
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % keyWord.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className={styles.locationicon}>
       <svg
@@ -20,7 +41,11 @@ const Module = () => {
           ></path>
         </g>
       </svg>
-      <h2>한남동에서 아이폰 찾고 계신가요?</h2>
+      <h2>
+        한남동에서
+        <span className={styles.slideWord}>{` ${keyWord[index]} `}</span>
+        찾고 계신가요?
+      </h2>
     </div>
   );
 };
