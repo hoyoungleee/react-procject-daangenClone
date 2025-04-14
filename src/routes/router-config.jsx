@@ -5,6 +5,8 @@ import AboutPage from '../pages/AboutPage';
 import RootLayout from '../layouts/RootLayout';
 import ErrorPage from '../pages/ErrorPage';
 import BlogPostDetail from '../pages/BlogPostDetail';
+import CommunityPage from '../pages/CommunityPage';
+import CommunityPageDetail from '../pages/CommunityPageDetail';
 
 // 라우터 설정
 export const router = createBrowserRouter([
@@ -19,17 +21,17 @@ export const router = createBrowserRouter([
         element: <IndexPage />,
       },
       {
-        path: 'blog',
-        element: <BlogPage />,
+        path: 'about',
+        element: <AboutPage />,
+      },
+      {
+        path: 'community',
+        element: <CommunityPage />,
       },
       {
         // :postId -> 경로에 붙는 파라미터 (/blog/1, /blog/7)
-        path: 'blog/:postId',
-        element: <BlogPostDetail />,
-      },
-      {
-        path: 'about',
-        element: <AboutPage />,
+        path: 'community/:postId',
+        element: <CommunityPageDetail />,
       },
     ],
   },

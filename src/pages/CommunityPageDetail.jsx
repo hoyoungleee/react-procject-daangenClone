@@ -9,7 +9,7 @@ import ThumbButton from '../components/hoyoung/ThumbButton';
 import CommentButton from '../components/hoyoung/CommentButton';
 import BookMarkButton from '../components/hoyoung/BookMarkButton';
 
-const BlogPostDetail = () => {
+const CommunityPageDetail = () => {
   // 지금 상세보기 페이지의 postId값을 URL로부터 읽어와야 한다.
   // 라우터 설정에 지정한 이름으로 글 번호를 얻어올 수 있다.
   const { postId } = useParams();
@@ -36,7 +36,6 @@ const BlogPostDetail = () => {
       <h1>{post.title}</h1>
       <div className={styles.content}>{post.content}</div>
       <div className={styles.imgCropper}>
-        {post.images}
         <img src={post.image}></img>
       </div>
       <div className={styles.content}>
@@ -72,4 +71,4 @@ const BlogPostDetail = () => {
   );
 };
 
-export default BlogPostDetail;
+export default CommunityPageDetail;

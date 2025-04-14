@@ -4,7 +4,7 @@ import { posts } from '../assets/community-dummy-data';
 import { useSearchParams } from 'react-router-dom';
 import BlogFilter from '../components/BlogFilter';
 
-const BlogPage = () => {
+const CommunityPage = () => {
   // ?뒤에 값(쿼리스트링) 읽는법
   // useSearchParams은 배열을 리턴하는데
   // 0번인덱스에는 쿼리스트링을 모아놓은 객체를 리턴
@@ -41,4 +41,4 @@ const BlogPage = () => {
   );
 };
 
-export default BlogPage;
+export default CommunityPage;
