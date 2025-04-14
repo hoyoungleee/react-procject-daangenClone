@@ -3,6 +3,8 @@ import styles from './SearchBox.module.scss';
 const SearchBox = () => {
   const [isClick, setIsClick] = useState(false);
 
+  const [inputValue, setInputValue] = useState('');
+
   const clickButton = (e) => {
     e.preventDefault();
     setIsClick((prev) => !prev);
@@ -59,7 +61,12 @@ const SearchBox = () => {
         )}
 
         <div>
-          <input placeholder='검색어를 입력하세요' />
+          <input
+            placeholder='검색어를 입력하세요'
+            onChange={(e) => {
+              setInputValue(e.target.value);
+            }}
+          />
           <button className={styles.ArrowButton}>
             <svg
               viewBox='0 0 24 24'
