@@ -2,6 +2,9 @@ import React from 'react';
 import styles from './RootLayout.module.scss';
 import MainNav from '../components/MainNav';
 import { Outlet } from 'react-router-dom';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+
 
 const RootLayout = () => {
   return (
@@ -9,6 +12,7 @@ const RootLayout = () => {
       <header className={styles.header}>
         <div className={styles.container}>
           <MainNav />
+          <Header />
           {/** 현국님 헤더 작업할 자리 */}
         </div>
       </header>
@@ -20,7 +24,7 @@ const RootLayout = () => {
 
       <footer className={styles.footer}>
         <div className={styles.container}>
-          <p>© 2025 개발자 블로그. All rights reserved.</p>
+          <Footer />
           {/** 현국님 푸터 작업할 자리 */}
         </div>
       </footer>
