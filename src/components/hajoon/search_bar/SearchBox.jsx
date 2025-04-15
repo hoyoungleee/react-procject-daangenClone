@@ -62,11 +62,23 @@ const SearchBox = () => {
 
         <div>
           <input
+            value={inputValue}
             placeholder='검색어를 입력하세요'
             onChange={(e) => {
               setInputValue(e.target.value);
             }}
           />
+
+          {inputValue && (
+            <button
+              className={styles.clearButton}
+              value={inputValue}
+              onClick={() => setInputValue('')}
+            >
+              x
+            </button>
+          )}
+
           <button className={styles.ArrowButton}>
             <svg
               viewBox='0 0 24 24'

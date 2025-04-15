@@ -42,6 +42,12 @@ form {
     border: none;
   }
 
+  input:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+  }
+
   .ArrowButton {
     background-color: transparent;
     flex-grow: 0.05;
@@ -87,4 +93,18 @@ form {
 
 button:hover {
   cursor: pointer;
+}
+
+.clearButton {
+  border-radius: 100%;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: centers;
+  border-color: transparent;
+  align-self: center;
+  color: white;
+  background-color: #afb0b1;
+  opacity: 0.5;
 }
