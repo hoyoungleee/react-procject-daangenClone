@@ -1,11 +1,13 @@
 .header {
-  background-color: #141414;
+  background-color: white;
   width: 100%;
   padding: 0.5rem 0;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 999;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
 }
 
 .container {
@@ -15,6 +17,49 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  background-color: #f5f5f5;
+  border-radius: 20px;
+  padding: 6px 12px;
+  max-width: 400px;
+  width: 100%;
+  transition: all 0.3s ease;
+
+  .searchIcon {
+    font-size: 16px;
+    margin-right: 8px;
+    color: #666;
+  }
+
+  .searchInput {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 14px;
+    width: 100%;
+  }
+}
+
+.scrolled {
+  .left,
+  .menu,
+  .right {
+    display: none;
+  }
+
+  .searchBox {
+    margin: 0 auto;
+  }
 }
 
 .linkWrapper {
@@ -28,7 +73,7 @@
   cursor: pointer;
 
   .logo {
-    height: 30px;
+    height: 60px;
     width: auto;
   }
 }
@@ -39,19 +84,22 @@
   padding: 20px;
 
   .menuItem {
-    color: white;
+    color: black;
     font-size: 14px;
     cursor: pointer;
     position: relative;
 
     &.active {
-      color: white;
-
       .dropdown {
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
       }
+    }
+
+    &.dimmed {
+      color: gray;
+      opacity: 0.6;
     }
 
     .menuText {
@@ -69,8 +117,8 @@
       position: absolute;
       top: 100%;
       left: 0;
-      background-color: rgb(54, 52, 52);
-      color: white;
+      background-color: white;
+      color: black;
       border-radius: 6px;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
       padding: 8px;
@@ -91,7 +139,7 @@
         justify-content: space-between;
 
         &:hover {
-          background-color: rgba(255, 255, 255, 0.1);
+          background-color: rgba(249, 247, 247, 0.887);
         }
 
         .subIcon {
