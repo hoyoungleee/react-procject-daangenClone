@@ -34,7 +34,7 @@ export const comments = [
   {
     id: 3,
     user_id: 9,
-    parent_id: 2,
+    parent_id: 3,
     content: '실물보다 사진이 더 좋아요.',
     likes: 88,
     realDate: '2025-03-28',
@@ -42,7 +42,7 @@ export const comments = [
   {
     id: 4,
     user_id: 4,
-    parent_id: 2,
+    parent_id: 3,
     content: '직거래 가능한가요?',
     likes: 23,
     realDate: '2025-03-29',

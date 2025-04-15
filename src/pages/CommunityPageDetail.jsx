@@ -11,6 +11,8 @@ import BookMarkButton from '../components/hoyoung/BookMarkButton';
 import GrayThumbButton from '../components/hoyoung/GrayThumbButton';
 import GrayCommentButton from '../components/hoyoung/GrayCommentButton';
 import SideMenu from '../components/hoyoung/SideMenu';
+import CommentSpace from '../components/hoyoung/CommentSpace';
+import EmptyComment from '../components/hoyoung/EmptyComment';
 
 const CommunityPageDetail = () => {
   // 지금 상세보기 페이지의 postId값을 URL로부터 읽어와야 한다.
@@ -108,28 +110,18 @@ const CommunityPageDetail = () => {
                 최신순
               </button>
             </div>
-            {sortComments.map((comment) => {
-              const commentUser = users.find((u) => u.id === comment.user_id);
-              return (
-                <div key={comment.id} className={styles.comment}>
-                  <UserProfile post={comment} user={commentUser} />
-                  <p>{comment.content}</p>
-                  <div className={styles.info}>
-                    <span>
-                      <GrayThumbButton />
-                    </span>
-                    &nbsp;
-                    {comment.likes}
-                    &nbsp; &nbsp;
-                    <span>
-                      <GrayCommentButton />
-                    </span>
-                    &nbsp;
-                    {foundComments.length}
-                  </div>
-                </div>
-              );
-            })}
+            {sortComments.length == 0 && <EmptyComment />}
+            {sortComments.length > 0 &&
+              sortComments.map((comment) => {
+                const commentUser = users.find((u) => u.id === comment.user_id);
+                return (
+                  <CommentSpace
+                    key={Math.random}
+                    comment={comment}
+                    user={commentUser}
+                  />
+                );
+              })}
           </div>
         </article>
       </div>
