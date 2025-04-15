@@ -21,30 +21,35 @@ const PostCard = ({ post }) => {
     if (diffMin > 0) return `${diffMin}분 전`;
     return `방금 전`;
   }
-  const date = formatRelativeDate(post.realDate); 
+  const date = formatRelativeDate(post.realDate);
 
   return (
     <Link to={`/community/${post.id}`} className={styles.cardLink}>
-      <div className={styles.card}>
-        <h2 className={styles.title}>{post.title}</h2>
-        <p className={styles.excerpt}>{post.content}</p>
-        <div className={styles.footer}>
-          <span className={styles.date}>{post.location}</span>·
-          <span className={styles.date}>{post.category}</span>·
-          <span className={styles.date}>{date}</span>
+      <div className={styles.postCard}>
+        <div className={styles.card}>
+          <h2 className={styles.title}>{post.title}</h2>
+          <p className={styles.excerpt}>{post.content}</p>
+          <div className={styles.footer}>
+            <span className={styles.date}>{post.location}</span>·
+            <span className={styles.date}>{post.category}</span>·
+            <span className={styles.date}>{date}</span>
+          </div>
+          <div className={styles.info}>
+            <span>
+              <GrayThumbButton />
+            </span>
+            &nbsp;
+            {post.likes}
+            &nbsp; &nbsp;
+            <span>
+              <GrayCommentButton />
+            </span>
+            &nbsp;
+            {foundComments.length}
+          </div>
         </div>
-        <div className={styles.info}>
-          <span>
-            <GrayThumbButton />
-          </span>
-          &nbsp;
-          {post.likes}
-          &nbsp; &nbsp;
-          <span>
-            <GrayCommentButton />
-          </span>
-          &nbsp;
-          {foundComments.length}
+        <div class={styles.thumb}>
+          {post.images?.[0] && <img src={post.images[0]} alt='썸네일' />}
         </div>
       </div>
     </Link>
