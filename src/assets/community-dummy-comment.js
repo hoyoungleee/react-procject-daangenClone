@@ -16,6 +16,22 @@ export const comments = [
     realDate: '2025-03-27',
   },
   {
+    id: 11,
+    user_id: 9,
+    parent_id: 1,
+    content: '이친구 갱상도 사람이 아니네',
+    likes: 14,
+    realDate: '2025-03-20',
+  },
+  {
+    id: 12,
+    user_id: 5,
+    parent_id: 1,
+    content: '니 등킨드나쓰 무밨나',
+    likes: 24,
+    realDate: '2025-03-24',
+  },
+  {
     id: 3,
     user_id: 9,
     parent_id: 2,

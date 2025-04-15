@@ -19,7 +19,9 @@ const CommunityPageDetail = () => {
 
   const foundPost = posts.find((p) => p.id === +postId);
   const foundUser = users.find((u) => u.id === foundPost.user_id);
-  const foundComments = comments.filter((c) => c.parent_id === +postId);
+  const foundComments = comments
+    .filter((c) => c.parent_id === +postId)
+    .sort((a, b) => new Date(a.realDate) - new Date(b.realDate));
 
   const post = {
     ...foundPost,
