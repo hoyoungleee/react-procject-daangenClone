@@ -28,6 +28,7 @@
   text-align: center;
   line-height: 38px;
   vertical-align: middle;
+  transition: width 0.3s ease;
 }
 
 .wordSlider {
@@ -40,13 +41,29 @@
   height: 38px;
   text-align: center;
   line-height: 34px;
-  display: block;
+  display: inline-block;
   align-items: center;
   justify-content: center;
   font-size: 38px;
   opacity: 1;
+  white-space: nowrap;
+
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeSlideUp 0.3s ease forwards;
 }
 
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+/*
 @keyframes slide-up-fade {
   0%,
   10% {
@@ -89,3 +106,4 @@
     transform: translateY(-342px);
   }
 }
+*/
