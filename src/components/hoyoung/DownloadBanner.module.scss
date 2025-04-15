@@ -1,0 +1,50 @@
+.downloadBanner {
+  background-color: #fff4ee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .textSection {
+    flex: 1;
+
+    .highlight {
+      color: #ff6f0f;
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 1.5rem;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 1rem;
+
+      img {
+        height: 40px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .imageSection {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+
+    img {
+      max-height: 400px;
+    }
+  }
+}

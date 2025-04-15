@@ -1,4 +1,4 @@
-import styles from './CommunityPostCard.module.scss';
+import styles from './HotTopicPostCard.module.scss';
 import { Link } from 'react-router-dom';
 import { comments } from '../../assets/community-dummy-comment';
 import GrayCommentButton from './GrayCommentButton';
