@@ -1,0 +1,48 @@
+.cardLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.card {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+
+  .excerpt {
+    color: #666;
+    margin: 0;
+    flex-grow: 1;
+    width: 80%;
+    white-space: nowrap; /* 줄바꿈 안 함 */
+    overflow: hidden; /* 넘친 부분 숨김 */
+    text-overflow: ellipsis; /* ... 처리 */
+  }
+
+  .footer {
+    display: flex;
+    margin-top: 0.2rem;
+    gap: 0.2rem;
+    color: #888;
+    font-size: 0.8rem;
+    align-items: center;
+  }
+
+  .info {
+    position: relative;
+    margin-top: 5px;
+    color: rgb(174, 169, 169);
+    font-size: 0.8rem;
+    span {
+      position: relative;
+      top: 4px;
+      opacity: 0.4;
+    }
+  }
+}
