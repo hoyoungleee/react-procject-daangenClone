@@ -19,15 +19,24 @@ const Module = () => {
   ];
 
   const [index, setIndex] = useState(0);
+  const [prevIndex, setPrevIndex] = useState(0);
   const [width, setWidth] = useState(0);
   const wordRef = useRef();
 
   useEffect(() => {
     const interval = setInterval(() => {
+      setPrevIndex(index);
       setIndex((prev) => (prev + 1) % keyWord.length);
-    }, 2000);
+    }, 2500);
     return () => clearInterval(interval);
-  }, []);
+  }, [index]);
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setIndex((prev) => (prev + 1) % keyWord.length);
+  //   }, 2000);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   useEffect(() => {
     if (wordRef.current) {
@@ -53,17 +62,24 @@ const Module = () => {
           ></path>
         </g>
       </svg>
-      <h2 className='wordSpace'>
-        {myLocation}에서{' '}
+      <h2 className={styles.wordSpace}>
+        {myLocation}에서{'\u00A0'}
         <span
           className={styles.wordcontainer}
-          style={{ width: `${width}px`, transition: 'width 0.3s ease' }}
+          style={{ width: `${width}px`, transition: 'width 0.5s ease' }}
         >
-          <span ref={wordRef} className={styles.word}>
+          <span
+            ref={wordRef}
+            key={index}
+            className={`${styles.word} ${styles.entering}`}
+          >
             {keyWord[index]}
           </span>
+          <span key={index - 1} className={`${styles.word} ${styles.leaving}`}>
+            {keyWord[(index - 1 + keyWord.length) % keyWord.length]}
+          </span>
         </span>
-        찾고 계신가요?
+        {'\u00A0'}찾고 계신가요?
       </h2>
     </div>
   );
