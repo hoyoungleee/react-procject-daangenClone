@@ -1,7 +1,11 @@
 // import React, { useState, useEffect } from 'react';
 import styles from './Module.module.scss';
+import AuthContext from './context/Location.js';
+import React, { useContext } from 'react';
 
-const Module = ({ giveTownName }) => {
+const Module = () => {
+  const { myLocation } = useContext(AuthContext); // 전역에서 가져온 위치 설정정
+
   const keyWord = [
     '맛집',
     '아이폰',
@@ -42,7 +46,7 @@ const Module = ({ giveTownName }) => {
         </g>
       </svg>
       <h2 className='wordSpace'>
-        {giveTownName}에서
+        {myLocation}에서
         <span className={styles.wordcontainer}>
           <span className={styles.wordSlider}>
             {keyWord.map((word, idx) => {

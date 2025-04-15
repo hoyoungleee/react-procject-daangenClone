@@ -1,27 +1,22 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import MainNav from '../components/MainNav';
 import styles from './IndexPage.module.scss';
 import Module from '../components/hajoon/Module';
 import SearchBar from '../components/hajoon/SearchBar';
 import Category from '../components/hajoon/Category';
 import Hometown from '../components/hajoon/Hometown';
+import AuthProvider from '../components/hajoon/context/Location.jsx';
 
 const IndexPage = () => {
-  const [town, setTown] = useState('서초동');
-
-  const clickedTown = (townName) => {
-    setTown(townName);
-  };
-
   return (
-    <>
+    <AuthProvider>
       <div className={styles.indexpage}>
-        <Module giveTownName={town} />
+        <Module />
         <SearchBar />
         <Category />
-        <Hometown setTown={clickedTown} />
+        <Hometown />
       </div>
-    </>
+    </AuthProvider>
   );
 };
 

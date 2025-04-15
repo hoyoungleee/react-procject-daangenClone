@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import styles from './Hometown.module.scss';
+import AuthContext from './context/Location.js';
 
-const Hometown = ({ setTown }) => {
+const Hometown = () => {
+  const { pick } = useContext(AuthContext);
+
   const townName = [
     '대천동',
     '서초동',
@@ -34,7 +37,7 @@ const Hometown = ({ setTown }) => {
               key={idx}
               onClick={() => {
                 //마을이 선택되면 index페이지로 넘겨서 다시 상단에 보이게 할거임(다른 자식의 데이터로사용하게..)
-                setTown(town);
+                pick(town);
               }}
             >
               {town}
