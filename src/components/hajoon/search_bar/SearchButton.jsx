@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styles from './SearchButton.module.scss';
 import SelectLocationModal from '../modal/SelectLocationModal';
+import AuthContext from '../context/Location.js';
 
 const SearchButton = () => {
   // 클릭시 모달을 띄우는 상태 변수
@@ -13,6 +14,8 @@ const SearchButton = () => {
   const closeModal = () => {
     setShowLoc(false);
   };
+
+  const { myLocation } = useContext(AuthContext); // 버튼에 나타낼 동,읍,면을 전역에서 가져올거임
 
   return (
     <>
@@ -41,7 +44,7 @@ const SearchButton = () => {
             ></path>
           </g>
         </svg>
-        서초동
+        {myLocation}
         <svg
           viewBox='0 0 24 24'
           fill='none'
