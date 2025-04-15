@@ -4,7 +4,7 @@ export const products = [
       title: '이케아 벽선반(Burhult) 3개',
       slides: ['/assets/jinho/slides/img1.jpg', '/assets/jinho/slides/img2.jpg', '/assets/jinho/slides/img3.jpg'],
       sellerData: {
-        profile: '/assets/jinho/slides/sellerItem/sellerImg2.png',
+        profile: '/assets/jinho/slides/sellerItem/sellerImg1.png',
         nickname: '리틀토',
         location: '서초동',
         temperature: 48.6,
@@ -197,7 +197,7 @@ export const products = [
       title: '에어팟 프로2 c타입',
       slides: ['/assets/jinho/slides/popImg1.jpg', '/assets/jinho/slides/popItem1/popItem1_1.jpg', '/assets/jinho/slides/popItem1/popItem1_2.jpg'],
       sellerData: {
-        profile: '/assets/jinho/slides/sellerItem/sellerImg1.png',
+        profile: '/assets/jinho/slides/sellerItem/sellerImg17.png',
         nickname: '제발 사주세요',
         location: '안압동5가',
         temperature: 44.4,
@@ -794,7 +794,7 @@ export const products = [
             title: '위닉스 보송 제습기, 필터새것',
             slides: ['/assets/jinho/slides/popImg5.jpg','/assets/jinho/slides/popItem5/popItem5_1.jpg','/assets/jinho/slides/popItem5/popItem5_2.jpg'],
             sellerData: {
-                profile: '/assets/jinho/slides/sellerItem/sellerImg6.png',
+                profile: '/assets/jinho/slides/sellerItem/sellerImg14.png',
                 nickname: '서초마미',
               location: '서초동',
               temperature: 38.7,
@@ -1085,7 +1085,7 @@ export const products = [
                     title: '대림 대용량 제습기13L',
                     slides: ['/assets/jinho/slides/popImg7.jpg','/assets/jinho/slides/popItem7/popItem7_1.jpg','/assets/jinho/slides/popItem7/popItem7_2.jpg'],
                     sellerData: {
-                        profile: '/assets/jinho/slides/sellerItem/sellerImg8.png',
+                        profile: '/assets/jinho/slides/sellerItem/sellerImg10.png',
                       nickname: '쿠리엄마',
                       location: '서초동',
                       temperature: 61.3,
@@ -1230,7 +1230,7 @@ export const products = [
                         title: 'LG 벽걸이 에어컨 실외기 포함',
                         slides: ['/assets/jinho/slides/popImg8.jpg','/assets/jinho/slides/popItem8/popItem8_1.jpg'],
                         sellerData: {
-                            profile: '/assets/jinho/slides/sellerItem/sellerImg9.png',
+                            profile: '/assets/jinho/slides/sellerItem/sellerImg16.png',
                           nickname: '교대당근',
                           location: '서초동',
                           temperature: 44.1,
@@ -1375,7 +1375,7 @@ export const products = [
                             title: '등산배낭 백팩',
                             slides: ['/assets/jinho/slides/popImg9.jpg','/assets/jinho/slides/popItem9/popItem9_1.jpg', '/assets/jinho/slides/popItem9/popItem9_2.jpg'],
                             sellerData: {
-                                profile: '/assets/jinho/slides/sellerItem/sellerImg10.png',
+                                profile: '/assets/jinho/slides/sellerItem/sellerImg7.png',
                               nickname: '휴식왕',
                               location: '성수동',
                               temperature: 49.1,
@@ -1520,7 +1520,7 @@ export const products = [
                             title: '천마차 23봉',
                             slides: ['/assets/jinho/slides/popImg10.jpg', '/assets/jinho/slides/popItem10/popItem10_1.jpg', '/assets/jinho/slides/popItem10/popItem10_2.jpg'],
                             sellerData: {
-                              profile: '/assets/images/seller2.jpg',
+                                profile: '/assets/jinho/slides/sellerItem/sellerImg15.png',
                               nickname: '등산전문가',
                               location: '방배 1동',
                               temperature: 45.5,
@@ -1665,7 +1665,7 @@ export const products = [
                             title: '흔한남매 10~18권 불꽃튀는 우리말과 오해요',
                             slides: ['/assets/jinho/slides/popImg11.jpg', '/assets/jinho/slides/popItem11/popItem11_1.jpg', '/assets/jinho/slides/popItem11/popItem11_2.jpg'],
                             sellerData: {
-                              profile: '/assets/images/seller3.jpg',
+                                profile: '/assets/jinho/slides/sellerItem/sellerImg9.png',
                               nickname: '패피언니',
                               location: '서초3동',
                               temperature: 52.1,
@@ -1810,7 +1810,7 @@ export const products = [
                             title: '아식스 운동화',
                             slides: ['/assets/jinho/slides/popImg12.jpg', '/assets/jinho/slides/popItem12/popItem12_1.jpg', '/assets/jinho/slides/popItem12/popItem12_2.jpg'],
                             sellerData: {
-                              profile: '/assets/images/seller1.jpg',
+                                profile: '/assets/jinho/slides/sellerItem/sellerImg12.png',
                               nickname: '조명사랑',
                               location: '방배본동',
                               temperature: 48.7,
@@ -1955,7 +1955,7 @@ export const products = [
                             title: '옷장 정리합니다.',
                             slides: ['/assets/jinho/slides/popImg13.jpg', '/assets/jinho/slides/popItem13/popItem13_1.jpg', '/assets/jinho/slides/popItem13/popItem13_2.jpg'],
                             sellerData: {
-                              profile: '/assets/images/seller4.jpg',
+                                profile: '/assets/jinho/slides/sellerItem/sellerImg3.png',
                               nickname: '음악매니아',
                               location: '서초동',
                               temperature: 46.2,
@@ -2101,7 +2101,7 @@ export const products = [
                             title: '용선생 시끌벅적 과학교실 40권',
                             slides: ['/assets/jinho/slides/popImg14.jpg', '/assets/jinho/slides/popItem14/popItem14_1.jpg', '/assets/jinho/slides/popItem14/popItem14_2.jpg'],
                             sellerData: {
-                              profile: '/assets/images/seller2.jpg',
+                                profile: '/assets/jinho/slides/sellerItem/sellerImg5.png',
                               nickname: '니트사랑',
                               location: '반포동동',
                               temperature: 50.0,
@@ -2246,7 +2246,7 @@ export const products = [
                             title: '업투 프리미엄 사당점 회원권 양도',
                             slides: ['/assets/jinho/slides/popImg15.jpg', '/assets/jinho/slides/popItem15/popItem15_1.jpg', '/assets/jinho/slides/popItem15/popItem15_2.jpg'],
                             sellerData: {
-                              profile: '/assets/images/seller3.jpg',
+                                profile: '/assets/jinho/slides/sellerItem/sellerImg12.png',
                               nickname: '커피holic',
                               location: '방배본동',
                               temperature: 47.8,
@@ -2391,7 +2391,7 @@ export const products = [
                             title: '오프화이트 멀티패치 빈티지 야상',
                             slides: ['/assets/jinho/slides/popImg16.jpg', '/assets/jinho/slides/popItem16/popItem16_1.jpg', '/assets/jinho/slides/popItem16/popItem16_2.jpg'],
                             sellerData: {
-                              profile: '/assets/images/seller1.jpg',
+                                profile: '/assets/jinho/slides/sellerItem/sellerImg15.png',
                               nickname: '도자기마을',
                               location: '반포 1동',
                               temperature: 51.3,
@@ -2536,7 +2536,7 @@ export const products = [
                             title: '스투시 L사이즈 티셔츠',
                             slides: ['/assets/jinho/slides/popImg17.jpg', '/assets/jinho/slides/popItem17/popItem17_1.jpg', '/assets/jinho/slides/popItem17/popItem17_2.jpg'],
                             sellerData: {
-                              profile: '/assets/images/seller4.jpg',
+                                profile: '/assets/jinho/slides/sellerItem/sellerImg2.png',
                               nickname: '음악광',
                               location: '반포동',
                               temperature: 49.5,
@@ -2681,7 +2681,7 @@ export const products = [
                             title: '데스커 W1100 화이트보드',
                             slides: ['/assets/jinho/slides/popImg18.jpg'],
                             sellerData: {
-                              profile: '/assets/images/seller2.jpg',
+                                profile: '/assets/jinho/slides/sellerItem/sellerImg18.png',
                               nickname: '책벌레',
                               location: '반포 2동',
                               temperature: 47.1,

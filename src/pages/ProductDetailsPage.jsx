@@ -11,11 +11,13 @@ const ProductDetailsPage = () => {
   const { id: currentProductId } = useParams(); // URL에서 상품 ID를 가져옵니다.
   const [product, setProduct] = useState(null);
   const navigate = useNavigate(); // useNavigate 훅 불러오기
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0); // 현재 슬라이드 인덱스 상태 추가
 
   useEffect(() => {
     // URL의 id와 일치하는 상품 데이터를 찾습니다.
     const foundProduct = products.find((p) => p.id === currentProductId);
     setProduct(foundProduct);
+    setCurrentSlideIndex(0); // 상품이 변경될 때 슬라이드 인덱스 초기화
   }, [currentProductId]);
 
   if (!product) {
@@ -37,6 +39,8 @@ const ProductDetailsPage = () => {
 
   const handleProductClick = (productId) => {
     navigate(`/products/${productId}`); // 클릭 시 해당 상품 ID로 이동
+    setCurrentSlideIndex(0); // 다른 상품 클릭 시 슬라이드 인덱스 초기화
+    window.scrollTo(0, 0); // 페이지 이동 후 스크롤 맨 위로
   };
 
   return (
@@ -48,7 +52,7 @@ const ProductDetailsPage = () => {
       </div>
       <div className={style.mainContent}>
         <div className={style.carouselSection}>
-          <ImageCarousel slides={slides} />
+          <ImageCarousel slides={slides} currentIndex={currentSlideIndex} setCurrentIndex={setCurrentSlideIndex} /> {/* props로 전달 */}
           <SellerInfo {...sellerData} />
         </div>
 
@@ -101,8 +105,8 @@ const ProductDetailsPage = () => {
             <div
               key={index}
               className={style.productCard}
-              onClick={() => handleProductClick(item.id)} // 클릭 이벤트 핸들러 추가
-              style={{ cursor: 'pointer' }} // 클릭 가능한 것처럼 마우스 커서 변경 (선택 사항)
+              onClick={() => handleProductClick(item.id)} // 클릭 시 슬라이드 인덱스 초기화
+              style={{ cursor: 'pointer' }}
             >
               <div className={zoomStyle.imageContainer}>
                 <img
@@ -132,8 +136,8 @@ const ProductDetailsPage = () => {
             <div
               key={index}
               className={style.productCard}
-              onClick={() => handleProductClick(item.id)} // 클릭 이벤트 핸들러 추가
-              style={{ cursor: 'pointer' }} // 클릭 가능한 것처럼 마우스 커서 변경 (선택 사항)
+              onClick={() => handleProductClick(item.id)} // 클릭 시 슬라이드 인덱스 초기화
+              style={{ cursor: 'pointer' }}
             >
               <div className={zoomStyle.imageContainer}>
                 <img
