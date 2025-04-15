@@ -4,12 +4,24 @@ import { useNavigate } from 'react-router-dom';
 import { SlArrowDown } from 'react-icons/sl';
 import { GoArrowUpRight } from 'react-icons/go';
 import { Link } from 'react-router-dom';
+import QrCodeModal from './modal/QrCodeModal';
 
 const Header = () => {
   const navigate = useNavigate();
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const [showSearchOnly, setShowSearchOnly] = useState(false);
+
+   // 모달 상태 관리
+   const [isQrModalOpen, setIsQrModalOpen] = useState(false);
+   // 모달 열기 함수
+   const openQrModal = () => {
+     setIsQrModalOpen(true);
+   };
+   // 모달 닫기 함수
+   const closeQrModal = () => {
+     setIsQrModalOpen(false);
+   };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -148,7 +160,8 @@ const Header = () => {
         {/* 우측: 앱 다운로드 버튼 */}
         {!showSearchOnly && (
           <div className={styles.right}>
-            <button className={styles.downloadBtn}>앱 다운로드</button>
+            <button className={styles.downloadBtn} onClick={openQrModal}>앱 다운로드</button>
+            {isQrModalOpen && <QrCodeModal onClose={closeQrModal} />} {/*모달 랜더링링*/}
           </div>
         )}
       </div>

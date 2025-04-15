@@ -113,7 +113,7 @@ const ProductDetailsPage = () => {
             당근 앱에서 보기
           </button>
 
-          {isQrModalOpen && <QrCodeModal onClose={closeQrModal} />}
+          
         </div>
       </div>
 
@@ -122,7 +122,8 @@ const ProductDetailsPage = () => {
           <h2 className={style.sectionTitle}>
             {sellerData.nickname} 님의 판매물품
           </h2>
-          <button className={style.viewMoreLink}>더 구경하기 &gt;</button>
+          <button className={style.viewMoreLink} onClick={openQrModal}>더 구경하기 &gt;</button>
+          
         </div>
 
         <div className={style.sellerProductsList}>
@@ -154,7 +155,7 @@ const ProductDetailsPage = () => {
       <div className={style.popularListingsSection}>
         <div className={style.sectionTitleContainer}>
           <h2 className={style.sectionTitle}>인기 매물</h2>
-          <button className={style.viewMoreLink}>더 구경하기 &gt;</button>
+          <button className={style.viewMoreLink} onClick={openQrModal}>더 구경하기 &gt;</button>
         </div>
         <div className={style.popularListingsList}>
           {popularListings.map((item, index) => (
@@ -179,7 +180,11 @@ const ProductDetailsPage = () => {
             </div>
           ))}
         </div>
-        <button className={style.viewMoreButton}>더 구경하기 </button>
+        <button className={style.viewMoreButton} onClick={openQrModal}>
+          더 구경하기 
+          </button>
+          {isQrModalOpen && <QrCodeModal onClose={closeQrModal} />}
+
       </div>
     </div>
   );
