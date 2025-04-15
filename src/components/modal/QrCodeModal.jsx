@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './QrCodeModal.module.scss';
-import QRCode from 'qrcode.react'; // QRCode 컴포넌트 import
+import QRCode from 'react-qr-code';
 
 const QrCodeModal = ({ onClose }) => {
   const qrCodeUrl = "https://daangn.onelink.me/oWdR?af_dp=karrot%3A%2F%2Farticles%2F951440097&deep_link_value=karrot%3A%2F%2Farticles%2F951440097&af_force_deeplink=true";
