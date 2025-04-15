@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Module.module.scss';
 
-const Module = () => {
+const Module = ({ giveTownName }) => {
   const keyWord = [
     '맛집',
     '아이폰',
@@ -14,14 +14,14 @@ const Module = () => {
     '모임',
   ];
 
-  const [index, setIndex] = useState(0);
+  // const [index, setIndex] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % keyWord.length);
-    }, 2000);
-    return () => clearInterval(interval);
-  }, []);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setIndex((prev) => (prev + 1) % keyWord.length);
+  //   }, 2000);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   return (
     <div className={styles.locationicon}>
@@ -42,7 +42,7 @@ const Module = () => {
         </g>
       </svg>
       <h2 className='wordSpace'>
-        한남동에서
+        {giveTownName}에서
         <span className={styles.wordcontainer}>
           <span className={styles.wordSlider}>
             {keyWord.map((word, idx) => {

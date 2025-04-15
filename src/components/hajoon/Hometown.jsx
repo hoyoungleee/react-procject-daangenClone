@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Hometown.module.scss';
 
-const Hometown = () => {
+const Hometown = ({ setTown }) => {
   const townName = [
     '대천동',
     '서초동',
@@ -29,7 +29,17 @@ const Hometown = () => {
     <div className={styles.hometown}>
       <ul>
         {townName.map((town, idx) => {
-          return <li key={idx}>{town}</li>;
+          return (
+            <li
+              key={idx}
+              onClick={() => {
+                //마을이 선택되면 index페이지로 넘겨서 다시 상단에 보이게 할거임(다른 자식의 데이터로사용하게..)
+                setTown(town);
+              }}
+            >
+              {town}
+            </li>
+          );
         })}
       </ul>
     </div>
