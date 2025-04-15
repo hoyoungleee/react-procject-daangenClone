@@ -4,7 +4,7 @@ import ImageCarousel from '../components/ImageCarousel';
 import SellerInfo from '../components/SellerInfo';
 import zoomStyle from './ImageZoom.module.scss';
 import products from '../assets/productData.js';
-
+import QrCodeModal from '../components/modal/QrCodeModal.jsx';
 import { useParams, useNavigate } from 'react-router-dom'; // useNavigate import 추가
 
 function shuffleArray(array) {
@@ -20,6 +20,16 @@ const ProductDetailsPage = () => {
   const [product, setProduct] = useState(null);
   const navigate = useNavigate(); // useNavigate 훅 불러오기
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0); // 현재 슬라이드 인덱스 상태 추가
+
+  const [isQrModalOpen, setIsQrModalOpen] = useState(false);
+
+  const openQrModal = () => {
+    setIsQrModalOpen(true);
+  };
+
+  const closeQrModal = () => {
+    setIsQrModalOpen(false);
+  };
 
   useEffect(() => {
     // URL의 id와 일치하는 상품 데이터를 찾습니다.
@@ -99,9 +109,11 @@ const ProductDetailsPage = () => {
             <span>조회 {stats.views}</span>
           </div>
 
-          <button type='button' className={style.actionButton}>
+          <button type='button' className={style.actionButton} onClick={openQrModal}>
             당근 앱에서 보기
           </button>
+
+          
         </div>
       </div>
 
@@ -110,7 +122,8 @@ const ProductDetailsPage = () => {
           <h2 className={style.sectionTitle}>
             {sellerData.nickname} 님의 판매물품
           </h2>
-          <button className={style.viewMoreLink}>더 구경하기 &gt;</button>
+          <button className={style.viewMoreLink} onClick={openQrModal}>더 구경하기 &gt;</button>
+          
         </div>
 
         <div className={style.sellerProductsList}>
@@ -142,7 +155,7 @@ const ProductDetailsPage = () => {
       <div className={style.popularListingsSection}>
         <div className={style.sectionTitleContainer}>
           <h2 className={style.sectionTitle}>인기 매물</h2>
-          <button className={style.viewMoreLink}>더 구경하기 &gt;</button>
+          <button className={style.viewMoreLink} onClick={openQrModal}>더 구경하기 &gt;</button>
         </div>
         <div className={style.popularListingsList}>
           {popularListings.map((item, index) => (
@@ -167,7 +180,11 @@ const ProductDetailsPage = () => {
             </div>
           ))}
         </div>
-        <button className={style.viewMoreButton}>더 구경하기 </button>
+        <button className={style.viewMoreButton} onClick={openQrModal}>
+          더 구경하기 
+          </button>
+          {isQrModalOpen && <QrCodeModal onClose={closeQrModal} />}
+
       </div>
     </div>
   );
