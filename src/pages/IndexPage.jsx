@@ -15,10 +15,12 @@ const IndexPage = () => {
 
   return (
     <>
-      <Module giveTownName={town} />
-      <SearchBar />
-      <Category />
-      <Hometown setTown={clickedTown} />
+      <div className={styles.indexpage}>
+        <Module giveTownName={town} />
+        <SearchBar />
+        <Category />
+        <Hometown setTown={clickedTown} />
+      </div>
     </>
   );
 };
