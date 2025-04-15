@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Header.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { SlArrowDown } from 'react-icons/sl';
@@ -8,6 +8,18 @@ import { Link } from 'react-router-dom';
 const Header = () => {
   const navigate = useNavigate();
   const [hoveredIndex, setHoveredIndex] = useState(null);
+
+  const [showSearchOnly, setShowSearchOnly] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const shouldShow = window.scrollY > 100;
+      setShowSearchOnly(shouldShow);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const menuItems = [
     { title: '중고거래', url: '/used-items' },
@@ -28,90 +40,117 @@ const Header = () => {
   ];
 
   return (
-    <header className={styles.header}>
+    <header
+      className={`${styles.header} ${showSearchOnly ? styles.scrolled : ''}`}
+    >
       <div className={styles.container}>
         {/* 좌측: 로고 */}
-        <div className={styles.left} onClick={() => navigate('/')}>
-          <img src='/images/logo.png' alt='당근 로고' className={styles.logo} />
-        </div>
+        {!showSearchOnly && (
+          <div className={styles.left} onClick={() => navigate('/')}>
+            <img
+              src='/images/logo.png'
+              alt='당근 로고'
+              className={styles.logo}
+            />
+          </div>
+        )}
 
-        {/* 중간:  */}
+        {/* 중간: 검색창 또는 메뉴 */}
+        <div className={styles.center}>
+          {showSearchOnly ? (
+            <div className={styles.searchBox}>
+              <span className={styles.searchIcon}>🔍</span>
+              <input
+                type='text'
+                placeholder='동네 이름, 물품명 등을 검색해보세요'
+                className={styles.searchInput}
+              />
+            </div>
+          ) : (
+            <nav className={styles.menu}>
+              {menuItems.map((item, index) => {
+                const isActive = hoveredIndex === index;
+                const menuItemClass = `${styles.menuItem} ${
+                  hoveredIndex !== null
+                    ? isActive
+                      ? styles.active
+                      : styles.dimmed
+                    : ''
+                }`;
 
-        <nav className={styles.menu}>
-          {menuItems.map((item, index) => {
-            const isActive = hoveredIndex === index;
-            const menuItemClass = `${styles.menuItem} ${
-              hoveredIndex !== null
-                ? isActive
-                  ? styles.active
-                  : styles.dimmed
-                : ''
-            }`;
-
-            const content = (
-              <div
-                className={menuItemClass}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={(e) => {
-                  setTimeout(() => {
-                    if (
-                      !e.relatedTarget ||
-                      !e.relatedTarget.closest(`.${styles.dropdown}`)
-                    ) {
-                      setHoveredIndex(null);
-                    }
-                  }, 4000);
-                }}
-              >
-                <div className={styles.menuText}>
-                  {item.title}
-                  {item.submenu && <SlArrowDown className={styles.arrowIcon} />}
-                </div>
-
-                {/* 드롭다운 */}
-                {item.submenu && hoveredIndex === index && (
+                const content = (
                   <div
-                    className={styles.dropdown}
+                    className={menuItemClass}
                     onMouseEnter={() => setHoveredIndex(index)}
+                    onMouseLeave={(e) => {
+                      setTimeout(() => {
+                        if (
+                          !e.relatedTarget ||
+                          !e.relatedTarget.closest(`.${styles.dropdown}`)
+                        ) {
+                          setHoveredIndex(null);
+                        }
+                      }, 300);
+                    }}
                   >
-                    {item.submenu.map((subItem, subIndex) => (
-                      <div key={subIndex} className={styles.dropdownItem}>
-                        <span>{subItem}</span>
-                        {(subItem === '중개사 서비스' ||
-                          subItem === '기업형 서비스' ||
-                          subItem === '신뢰와 안전') && (
-                          <GoArrowUpRight
-                            className={styles.subIcon}
-                            style={{
-                              fontSize: '20px',
-                              color: '#999',
-                              transform: 'translateY(1px)',
-                              display: 'inline-block',
-                              marginLeft: '-2px',
-                            }}
-                          />
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            );
+                    <div className={styles.menuText}>
+                      {item.title}
+                      {item.submenu && (
+                        <SlArrowDown className={styles.arrowIcon} />
+                      )}
+                    </div>
 
-            return item.url ? (
-              <Link key={index} to={item.url} className={styles.linkWrapper}>
-                {content}
-              </Link>
-            ) : (
-              <div key={index}>{content}</div>
-            );
-          })}
-        </nav>
+                    {item.submenu && hoveredIndex === index && (
+                      <div
+                        className={styles.dropdown}
+                        onMouseEnter={() => setHoveredIndex(index)}
+                      >
+                        {item.submenu.map((subItem, subIndex) => (
+                          <div key={subIndex} className={styles.dropdownItem}>
+                            <span>{subItem}</span>
+                            {(subItem === '중개사 서비스' ||
+                              subItem === '기업형 서비스' ||
+                              subItem === '신뢰와 안전') && (
+                              <GoArrowUpRight
+                                className={styles.subIcon}
+                                style={{
+                                  fontSize: '20px',
+                                  color: '#999',
+                                  transform: 'translateY(1px)',
+                                  display: 'inline-block',
+                                  marginLeft: '-2px',
+                                }}
+                              />
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+
+                return item.url ? (
+                  <Link
+                    key={index}
+                    to={item.url}
+                    className={styles.linkWrapper}
+                  >
+                    {content}
+                  </Link>
+                ) : (
+                  <div key={index}>{content}</div>
+                );
+              })}
+            </nav>
+          )}
+        </div>
 
         {/* 우측: 앱 다운로드 버튼 */}
-        <div className={styles.right}>
-          <button className={styles.downloadBtn}>앱 다운로드</button>
-        </div>
+        {!showSearchOnly && (
+          <div className={styles.right}>
+            <button className={styles.downloadBtn}>앱 다운로드</button>
+          </div>
+        )}
       </div>
     </header>
   );
