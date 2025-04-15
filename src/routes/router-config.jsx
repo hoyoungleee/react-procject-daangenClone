@@ -8,7 +8,7 @@ import BlogPostDetail from '../pages/BlogPostDetail';
 import ProductDetailsPage from '../pages/ProductDetailsPage';
 import CommunityPage from '../pages/CommunityPage';
 import CommunityPageDetail from '../pages/CommunityPageDetail';
-
+import ProductListPage from '../pages/ProductListPage';
 // 라우터 설정
 export const router = createBrowserRouter([
   {
@@ -46,6 +46,10 @@ export const router = createBrowserRouter([
         // :postId -> 경로에 붙는 파라미터 (/blog/1, /blog/7)
         path: 'community/:postId',
         element: <CommunityPageDetail />,
+      },
+      {
+        path: 'used-items', // '/used-items' 경로 추가
+        element: <ProductListPage />, // ProductList 컴포넌트 연결
       },
     ],
   },
