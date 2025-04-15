@@ -16,12 +16,12 @@ const SearchButton = () => {
 
   return (
     <>
-      {showLoc && <SelectLocationModal />}
+      {showLoc && <SelectLocationModal close={closeModal} />}
 
       <button
         className={styles.searchButton}
         onClick={() => {
-          setShowLoc(true);
+          openModal();
         }}
       >
         <svg

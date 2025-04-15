@@ -5,11 +5,8 @@ import Module from '../components/hajoon/Module';
 import SearchBar from '../components/hajoon/SearchBar';
 import Category from '../components/hajoon/Category';
 import Hometown from '../components/hajoon/Hometown';
-import SelectLocationModal from '../components/hajoon/modal/SelectLocationModal';
 
 const IndexPage = () => {
-  const [isModalOpen, setIsModalOpen] = useState(true);
-
   const [town, setTown] = useState('서초동');
 
   const clickedTown = (townName) => {
@@ -18,9 +15,6 @@ const IndexPage = () => {
 
   return (
     <>
-      {isModalOpen && (
-        <SelectLocationModal onClose={() => setIsModalOpen(false)} />
-      )}
       <Module giveTownName={town} />
       <SearchBar />
       <Category />

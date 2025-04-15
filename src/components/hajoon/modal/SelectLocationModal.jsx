@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './SelectLocationModal.module.scss';
 import ReactDOM from 'react-dom';
 
-const SelectLocationModal = ({ onClose }) => {
+const SelectLocationModal = ({ close }) => {
   const [inputValue, setInputValue] = useState('');
 
   const location = [
@@ -31,11 +31,11 @@ const SelectLocationModal = ({ onClose }) => {
 
   console.log('모달 렌더링됐음');
   return ReactDOM.createPortal(
-    <div className={styles.modals} onClick={onClose}>
-      <div className={styles.inner}>
+    <div className={styles.modals} onClick={() => close()}>
+      <div className={styles.inner} onClick={(e) => e.stopPropagation()}>
         <div className={styles.modalHeader}>
           <h2>지역 변경</h2>
-          <button>
+          <button onClick={() => close()}>
             <svg
               viewBox='0 0 24 24'
               fill='none'
@@ -55,6 +55,7 @@ const SelectLocationModal = ({ onClose }) => {
             </svg>
           </button>
         </div>
+
         {/* 칸나누기 ---------------------------------------------------------------*/}
 
         <div className={styles.inputDiv}>
