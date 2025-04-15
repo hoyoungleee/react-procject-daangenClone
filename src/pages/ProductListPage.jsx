@@ -65,7 +65,12 @@ const ProductList = () => {
   const visibleLocations = showMoreLocations ? [...initialLocations, ...remainingLocations] : initialLocations;
 
   return (
-    <div className={styles.productListContainer}> {/* 전체 컨테이너 */}
+    <div className={styles.productListContainer}>
+       <div className={styles.headerSection}> {/* 새로운 div로 묶음 */}
+        <div className={styles.navigation}>
+          <Link to="/">홈</Link> > <Link to="/used-items">중고거래</Link>
+       
+
       <aside className={styles.filterSection}> {/* 필터 사이드바 */}
         <h3>위치</h3>
         <div>
@@ -179,6 +184,8 @@ const ProductList = () => {
           </label>
         </div>
       </aside>
+      </div>
+      </div>
 
       <div className={styles.productList}>
         {displayedProducts.map(product => (
