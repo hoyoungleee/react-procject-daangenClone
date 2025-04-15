@@ -5,8 +5,8 @@ const DownloadBanner = () => {
   return (
     <div className={styles.downloadBanner}>
       <div className={styles.textSection}>
-        <p className={styles.highlight}>당근에서 가까운 이웃과 함께해요.</p>
-        <h2 className={styles.title}>지금 바로 다운로드하기</h2>
+        <h2 className={styles.highlight}>당근에서 가까운 이웃과 함께해요.</h2>
+        <h1 className={styles.title}>지금 바로 다운로드하기</h1>
         <div className={styles.buttons}>
           <img
             src='https://karrotmarket-com-sanity-cdn.krrt.io/production/49380c1c7e70e49f0f93baf0f790925eefc69082-120x40.svg'
