@@ -8,6 +8,15 @@
   width: 20px;
   height: 20px;
 }
+h3 {
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 6px;
+    text-decoration-thickness: 1.5px;
+  }
+}
 .sideMenu__title {
   font-size: 14px;
   font-weight: 350;
@@ -24,12 +33,13 @@
   font-size: 14px;
 
   li {
-    padding: 6px 0;
+    padding: 10px 0;
     cursor: pointer;
-    transition: color 0.2s;
 
     &:hover {
-      color: #ff6600;
+      text-decoration: underline;
+      text-underline-offset: 6px;
+      text-decoration-thickness: 1.5px;
     }
   }
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './CommunityPageDetail.module.scss';
 import { useParams } from 'react-router-dom';
 import { posts } from '../assets/community-dummy-data';
@@ -25,21 +25,25 @@ const CommunityPageDetail = () => {
     ...foundPost,
   };
   const views = post.views.toLocaleString();
-  function formatRelativeDate(realDateStr) {
-    const realDate = new Date(realDateStr);
-    const now = new Date();
 
-    const diffMs = now - realDate;
-    const diffSec = Math.floor(diffMs / 1000);
-    const diffMin = Math.floor(diffSec / 60);
-    const diffHour = Math.floor(diffMin / 60);
-    const diffDay = Math.floor(diffHour / 24);
-
-    if (diffDay > 0) return `${diffDay}일 전`;
-    if (diffHour > 0) return `${diffHour}시간 전`;
-    if (diffMin > 0) return `${diffMin}분 전`;
-    return `방금 전`;
-  }
+  const [sortComments, setComments] = useState(foundComments);
+  const [sort, setSort] = useState('registered');
+  const clickSortHandler = (status) => {
+    setSort(status);
+    if (status === 'registered') {
+      setComments(
+        [...sortComments].sort(
+          (a, b) => new Date(a.realDate) - new Date(b.realDate),
+        ),
+      );
+    } else {
+      setComments(
+        [...sortComments].sort(
+          (a, b) => new Date(b.realDate) - new Date(a.realDate),
+        ),
+      );
+    }
+  };
 
   return (
     <>
@@ -63,7 +67,13 @@ const CommunityPageDetail = () => {
               <img src={image} />
             </div>
           ))}
-
+          <div className={styles.meta}>
+            <img
+              src='https://assetstorage.krrt.io/1143366661080869398/6c774f35-3eef-44d7-8668-b6ed67e27b97/width=120,height=120.png'
+              alt='공감버튼'
+            />
+            <span>이웃들이 공감했어요</span>
+          </div>
           <div className={styles.content}>
             <div className={styles.iconRow}>
               <span className={styles.iconGroup}>
@@ -82,8 +92,21 @@ const CommunityPageDetail = () => {
           </div>
 
           <div className={styles.comments}>
-            <h2>댓글</h2>
-            {foundComments.map((comment) => {
+            <div className={styles.sortTab}>
+              <button
+                className={`${styles.tab} ${sort === 'registered' ? styles.active : ''}`}
+                onClick={() => clickSortHandler('registered')}
+              >
+                등록순
+              </button>
+              <button
+                className={`${styles.tab} ${sort === 'latest' ? styles.active : ''}`}
+                onClick={() => clickSortHandler('latest')}
+              >
+                최신순
+              </button>
+            </div>
+            {sortComments.map((comment) => {
               const commentUser = users.find((u) => u.id === comment.user_id);
               return (
                 <div key={comment.id} className={styles.comment}>

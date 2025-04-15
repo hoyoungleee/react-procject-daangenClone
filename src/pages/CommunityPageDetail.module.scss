@@ -16,7 +16,7 @@
 
   /* optional: max-width 설정 */
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 15px auto;
   padding: 2rem;
   padding-top: 0;
 }
@@ -58,7 +58,7 @@
   }
   .content {
     line-height: 1.8;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
 
     svg {
       width: 22px;
@@ -92,7 +92,30 @@
 
   .comments {
     border-top: 1px solid #ddd;
-    padding-top: 2rem;
+    padding-top: 1rem;
+    .sortTab {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .tab {
+      font-size: 14px;
+      background: none;
+      border: none;
+      color: #aaa;
+      cursor: pointer;
+      padding: 0;
+      transition: color 0.2s;
+
+      &:hover {
+        color: #555;
+      }
+    }
+
+    .active {
+      color: #000;
+      font-weight: bold;
+    }
 
     h2 {
       font-size: 1.5rem;
@@ -101,6 +124,7 @@
 
     .comment {
       padding: 1rem;
+      padding-left: 0;
       border-bottom: 1px solid #eee;
 
       strong {
@@ -112,7 +136,7 @@
       p {
         color: #181616;
         margin: 5px;
-        padding-left: 3.1em;
+        padding-left: 2.9em;
       }
       .info {
         position: relative;
@@ -126,5 +150,19 @@
         }
       }
     }
+  }
+}
+.meta {
+  font-size: 13px;
+  color: #999;
+  display: flex;
+  margin: 10px 0;
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
+  span {
+    margin-left: 5px;
   }
 }

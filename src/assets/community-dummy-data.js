@@ -110,9 +110,7 @@ export const posts = [
     title: '동네 키오스크 택배함',
     content: '편의점 옆에 생긴 무인 택배함 개꿀!',
     location: '가산동',
-    images: [
-      'https://lh5.googleusercontent.com/proxy/wIQYXicJdxTnc0wmLGKjBnUDL8lTmWBs2yRombR5XFD0yq63qeBCzPxftc3M-7x5IUBL-1UqJa-4AMqpRCbw_DafdaxvgQv4LiG1ef4kHhxu0w',
-    ],
+    images: [],
     views: 78412,
     likes: 1,
     bookmarks: 24,
