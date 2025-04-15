@@ -36,7 +36,9 @@ const ProductDetailsPage = () => {
     const foundProduct = products.find((p) => p.id === currentProductId);
     if (foundProduct) {
       // 인기 매물 목록을 섞습니다.
-      const shuffledPopularListings = shuffleArray([...foundProduct.popularListings]);
+      const shuffledPopularListings = shuffleArray([
+        ...foundProduct.popularListings,
+      ]);
       setProduct({ ...foundProduct, popularListings: shuffledPopularListings });
     }
     setCurrentSlideIndex(0); // 상품이 변경될 때 슬라이드 인덱스 초기화
@@ -75,7 +77,12 @@ const ProductDetailsPage = () => {
       </div>
       <div className={style.mainContent}>
         <div className={style.carouselSection}>
-          <ImageCarousel slides={slides} currentIndex={currentSlideIndex} setCurrentIndex={setCurrentSlideIndex} /> {/* props로 전달 */}
+          <ImageCarousel
+            slides={slides}
+            currentIndex={currentSlideIndex}
+            setCurrentIndex={setCurrentSlideIndex}
+          />{' '}
+          {/* props로 전달 */}
           <SellerInfo {...sellerData} />
         </div>
 
@@ -109,11 +116,13 @@ const ProductDetailsPage = () => {
             <span>조회 {stats.views}</span>
           </div>
 
-          <button type='button' className={style.actionButton} onClick={openQrModal}>
+          <button
+            type='button'
+            className={style.actionButton}
+            onClick={openQrModal}
+          >
             당근 앱에서 보기
           </button>
-
-          
         </div>
       </div>
 
@@ -122,8 +131,9 @@ const ProductDetailsPage = () => {
           <h2 className={style.sectionTitle}>
             {sellerData.nickname} 님의 판매물품
           </h2>
-          <button className={style.viewMoreLink} onClick={openQrModal}>더 구경하기 &gt;</button>
-          
+          <button className={style.viewMoreLink} onClick={openQrModal}>
+            더 구경하기 &gt;
+          </button>
         </div>
 
         <div className={style.sellerProductsList}>
@@ -155,7 +165,9 @@ const ProductDetailsPage = () => {
       <div className={style.popularListingsSection}>
         <div className={style.sectionTitleContainer}>
           <h2 className={style.sectionTitle}>인기 매물</h2>
-          <button className={style.viewMoreLink} onClick={openQrModal}>더 구경하기 &gt;</button>
+          <button className={style.viewMoreLink} onClick={openQrModal}>
+            더 구경하기 &gt;
+          </button>
         </div>
         <div className={style.popularListingsList}>
           {popularListings.map((item, index) => (
@@ -181,10 +193,9 @@ const ProductDetailsPage = () => {
           ))}
         </div>
         <button className={style.viewMoreButton} onClick={openQrModal}>
-          더 구경하기 
-          </button>
-          {isQrModalOpen && <QrCodeModal onClose={closeQrModal} />}
-
+          더 구경하기
+        </button>
+        {isQrModalOpen && <QrCodeModal onClose={closeQrModal} />}
       </div>
     </div>
   );
