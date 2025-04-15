@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './CommunityPageDetail.module.scss';
 import { useParams } from 'react-router-dom';
 import { posts } from '../assets/community-dummy-data';
@@ -8,11 +8,11 @@ import UserProfile from '../components/hoyoung/UserProfile';
 import ThumbButton from '../components/hoyoung/ThumbButton';
 import CommentButton from '../components/hoyoung/CommentButton';
 import BookMarkButton from '../components/hoyoung/BookMarkButton';
-import GrayThumbButton from '../components/hoyoung/GrayThumbButton';
-import GrayCommentButton from '../components/hoyoung/GrayCommentButton';
 import SideMenu from '../components/hoyoung/SideMenu';
 import CommentSpace from '../components/hoyoung/CommentSpace';
 import EmptyComment from '../components/hoyoung/EmptyComment';
+import HotTopic from '../components/hoyoung/HotTopic';
+import DownloadBanner from '../components/hoyoung/DownloadBanner';
 
 const CommunityPageDetail = () => {
   // 지금 상세보기 페이지의 postId값을 URL로부터 읽어와야 한다.
@@ -32,6 +32,15 @@ const CommunityPageDetail = () => {
 
   const [sortComments, setComments] = useState(foundComments);
   const [sort, setSort] = useState('registered');
+  useEffect(() => {
+    const updated = comments
+      .filter((c) => c.parent_id === +postId)
+      .sort((a, b) => new Date(a.realDate) - new Date(b.realDate));
+
+    setComments(updated);
+    setSort('registered'); // 선택적으로 정렬 상태도 초기화
+  }, [postId]);
+
   const clickSortHandler = (status) => {
     setSort(status);
     if (status === 'registered') {
@@ -48,7 +57,7 @@ const CommunityPageDetail = () => {
       );
     }
   };
-
+  const categorys = [...new Set(posts.map((post) => post.category))];
   return (
     <>
       <div className={styles.breadcrumb}>
@@ -58,7 +67,7 @@ const CommunityPageDetail = () => {
       </div>
       <div className={styles.container}>
         <div className={styles.sideMenu}>
-          <SideMenu />
+          <SideMenu categorys={categorys} />
         </div>
         <article className={styles.post}>
           <span className={styles.badge}>{post.category}</span>
@@ -67,7 +76,7 @@ const CommunityPageDetail = () => {
           <p>{post.content}</p>
 
           {post.images.map((image) => (
-            <div key={Math.random} className={styles.imageWrapper}>
+            <div key={Math.random()} className={styles.imageWrapper}>
               <img src={image} />
             </div>
           ))}
@@ -86,7 +95,7 @@ const CommunityPageDetail = () => {
               </span>
               <span className={styles.iconGroup}>
                 <CommentButton />
-                {foundComments.length}
+                {sortComments.length}
               </span>
               <span className={styles.iconGroup}>
                 <BookMarkButton /> {post.bookmarks}
@@ -116,14 +125,18 @@ const CommunityPageDetail = () => {
                 const commentUser = users.find((u) => u.id === comment.user_id);
                 return (
                   <CommentSpace
-                    key={Math.random}
+                    key={Math.random()}
                     comment={comment}
                     user={commentUser}
                   />
                 );
               })}
           </div>
+          <HotTopic posts={posts} location={foundUser.location} />
         </article>
+      </div>
+      <div>
+        <DownloadBanner />
       </div>
     </>
   );

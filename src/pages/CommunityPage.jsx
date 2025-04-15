@@ -17,6 +17,8 @@ const CommunityPage = () => {
   // 옵셔널 체이닝 (?.): 값이 존재하면 적용, 존재하지 않으면 실행하지 않음.
   const search = searchParams.get('search')?.toLowerCase() || '';
 
+  const categorys = [...new Set(posts.map((post) => post.category))];
+
   return (
     <div>
       <div className={styles.breadcrumb}>
@@ -26,7 +28,7 @@ const CommunityPage = () => {
       </div>
       <div className={styles.container}>
         <div className={styles.sideMenu}>
-          <SideMenu />
+          <SideMenu categorys={categorys} />
         </div>
         <div className={styles.blog}>
           <div>

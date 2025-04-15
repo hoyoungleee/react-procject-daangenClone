@@ -319,7 +319,7 @@ export const products = [
           image: ['/assets/jinho/slides/popImg14.jpg'],
           title: '용선생 시끌벅적 과학교실 40권',
           price: '100,000원',
-          location: '반포동동',
+          location: '반포동',
         },
         {
           id: 'pop15', // ID 추가
