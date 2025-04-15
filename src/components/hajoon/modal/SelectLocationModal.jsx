@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styles from './SelectLocationModal.module.scss';
 import ReactDOM from 'react-dom';
+import AuthContext from '../context/Location.js';
 
 const SelectLocationModal = ({ close }) => {
   const [inputValue, setInputValue] = useState('');
 
+  const { pick } = useContext(AuthContext);
+
   const location = [
     '추천',
     '충청남도, 보령시, 대천동',
-    '충청남도, 보령시, 명천동동',
+    '충청남도, 보령시, 명천동',
     '충청북도, 청주시, 오송읍',
     '충청북도, 청주시, 가경동',
     '충청남도, 아산시, 온양동',
@@ -28,6 +31,15 @@ const SelectLocationModal = ({ close }) => {
     '인천광역시, 연수구, 송도동',
     '인천광역시, 연수구, 송도동',
   ];
+
+  const pickingName = (name) => {
+    pick(
+      name
+        .split(',') //쉼표기준으로 나눔(경기도 화성시 향납읍)
+        .pop() // 마지막꺼 빼옴 ( 향남읍 )
+        .trim(), // 공백제거 (향남읍)
+    );
+  };
 
   console.log('모달 렌더링됐음');
   return ReactDOM.createPortal(
@@ -134,7 +146,12 @@ const SelectLocationModal = ({ close }) => {
         <div className={styles.list}>
           <ul>
             {location.map((itm, idx) => (
-              <li key={idx}>{itm}</li>
+              <li
+                key={idx}
+                onClick={() => pickingName(itm)} // 익명함수 사용안하면 렌더링시에 바로실행됨} /*itm에서 글자를 쪼개서 xx동만 보이는 로직이 필요)*/
+              >
+                {itm}
+              </li>
             ))}
           </ul>
         </div>
