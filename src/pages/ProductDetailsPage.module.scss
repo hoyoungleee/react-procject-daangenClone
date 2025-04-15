@@ -232,7 +232,7 @@ $info-column-gap: 50px;
   display: flex; /* flexbox를 사용하여 내부 요소들을 배치 */
   justify-content: space-between; /* 제목과 버튼을 양쪽 끝으로 보냅니다. */
   align-items: center; /* 세로 방향으로 가운데 정렬합니다. */
-  margin-bottom: 10px; /* 제목과 목록 사이에 간격을 줍니다. */
+  margin-bottom: 10px; 
 }
 
 .viewMoreLink {
