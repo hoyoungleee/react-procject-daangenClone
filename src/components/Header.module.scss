@@ -1,3 +1,7 @@
+body {
+  padding-top: 60px;
+}
+
 .header {
   background-color: white;
   width: 100%;
@@ -6,8 +10,12 @@
   top: 0;
   left: 0;
   z-index: 999;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
   transition: all 0.3s ease;
+  &.showBorder {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
 }
 
 .container {
@@ -31,7 +39,7 @@
   background-color: #f5f5f5;
   border-radius: 20px;
   padding: 6px 12px;
-  max-width: 400px;
+  max-width: 80%;
   width: 100%;
   transition: all 0.3s ease;
 
@@ -51,12 +59,7 @@
 }
 
 .scrolled {
-  .left,
-  .menu,
-  .right {
-    display: none;
-  }
-
+  border-bottom: 1px solid rgba(12, 7, 7, 0);
   .searchBox {
     margin: 0 auto;
   }
@@ -151,6 +154,31 @@
 }
 
 .right {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  height: 100%;
+
+  .searchIcon {
+    cursor: pointer;
+
+    color: #444;
+    display: flex;
+    align-items: center; // 아이콘 수직 정렬
+    height: 100%; // 부모 높이에 맞추기
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    svg {
+      font-size: 24px;
+    }
+
+    &.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
   .downloadBtn {
     position: relative;
     background-color: #ea7221;
