@@ -3,9 +3,14 @@ import { Link } from 'react-router-dom';
 import { comments } from '../../assets/community-dummy-comment';
 import GrayCommentButton from './GrayCommentButton';
 import GrayThumbButton from './GrayThumbButton';
+import { replies } from '../../assets/community-dummy-childComment';
 
 const PostCard = ({ post }) => {
   const foundComments = comments.filter((c) => c.parent_id === +post.id);
+  const commentIds = foundComments.map((c) => c.id);
+  const foundChildComments = replies.filter((cc) =>
+    commentIds.includes(cc.parent_id),
+  );
   function formatRelativeDate(realDateStr) {
     const realDate = new Date(realDateStr);
     const now = new Date();
@@ -49,7 +54,7 @@ const PostCard = ({ post }) => {
               <GrayCommentButton />
             </span>
             &nbsp;
-            {foundComments.length}
+            {foundComments.length + foundChildComments.length}
           </div>
         </div>
         <div class={styles.thumb}>
