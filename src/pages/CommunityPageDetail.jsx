@@ -57,7 +57,7 @@ const CommunityPageDetail = () => {
       );
     }
   };
-
+  const categorys = [...new Set(posts.map((post) => post.category))];
   return (
     <>
       <div className={styles.breadcrumb}>
@@ -67,7 +67,7 @@ const CommunityPageDetail = () => {
       </div>
       <div className={styles.container}>
         <div className={styles.sideMenu}>
-          <SideMenu />
+          <SideMenu categorys={categorys} />
         </div>
         <article className={styles.post}>
           <span className={styles.badge}>{post.category}</span>
