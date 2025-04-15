@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import AuthContext from '../context/Location.js';
 
 const SelectLocationModal = ({ close }) => {
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState(''); // 검색어가 입력되면 X 버튼이 오른쪽에 뜨게하려는 목적
 
   const { pick } = useContext(AuthContext);
 
@@ -39,9 +39,10 @@ const SelectLocationModal = ({ close }) => {
         .pop() // 마지막꺼 빼옴 ( 향남읍 )
         .trim(), // 공백제거 (향남읍)
     );
+    close();
   };
 
-  console.log('모달 렌더링됐음');
+  //   console.log('모달 렌더링됐음');
   return ReactDOM.createPortal(
     <div className={styles.modals} onClick={() => close()}>
       <div className={styles.inner} onClick={(e) => e.stopPropagation()}>
