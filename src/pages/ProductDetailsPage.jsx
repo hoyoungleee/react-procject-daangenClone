@@ -7,6 +7,14 @@ import products from '../assets/productData.js';
 
 import { useParams, useNavigate } from 'react-router-dom'; // useNavigate import 추가
 
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
 const ProductDetailsPage = () => {
   const { id: currentProductId } = useParams(); // URL에서 상품 ID를 가져옵니다.
   const [product, setProduct] = useState(null);
@@ -16,8 +24,13 @@ const ProductDetailsPage = () => {
   useEffect(() => {
     // URL의 id와 일치하는 상품 데이터를 찾습니다.
     const foundProduct = products.find((p) => p.id === currentProductId);
-    setProduct(foundProduct);
+    if (foundProduct) {
+      // 인기 매물 목록을 섞습니다.
+      const shuffledPopularListings = shuffleArray([...foundProduct.popularListings]);
+      setProduct({ ...foundProduct, popularListings: shuffledPopularListings });
+    }
     setCurrentSlideIndex(0); // 상품이 변경될 때 슬라이드 인덱스 초기화
+    window.scrollTo(0, 0); // 페이지 로드 시 스크롤 맨 위로 (선택 사항)
   }, [currentProductId]);
 
   if (!product) {
