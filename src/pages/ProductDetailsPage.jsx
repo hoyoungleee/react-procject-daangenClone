@@ -35,11 +35,12 @@ const ProductDetailsPage = () => {
     // URL의 id와 일치하는 상품 데이터를 찾습니다.
     const foundProduct = products.find((p) => p.id === currentProductId);
     if (foundProduct) {
-      // 인기 매물 목록을 섞습니다.
-      const shuffledPopularListings = shuffleArray([
-        ...foundProduct.popularListings,
-      ]);
-      setProduct({ ...foundProduct, popularListings: shuffledPopularListings });
+      const deepCopiedProduct = {
+        ...foundProduct,
+        popularListings: foundProduct.popularListings.map(item => ({ ...item })),
+      };
+      const shuffledPopularListings = shuffleArray(deepCopiedProduct.popularListings);
+      setProduct({ ...deepCopiedProduct, popularListings: shuffledPopularListings });
     }
     setCurrentSlideIndex(0); // 상품이 변경될 때 슬라이드 인덱스 초기화
     window.scrollTo(0, 0); // 페이지 로드 시 스크롤 맨 위로 (선택 사항)

@@ -55,7 +55,7 @@ export const products = [
       ],
       category: '가구/인테리어',
       timeAgo: '끌올 3분 전',
-      price: '11,000원',
+      price: '75,000원',
       description: [
         'o 이케아 부르훌트 벽선반 세트입니다.',
         'o 24년에 샀는데 이사가서 팔아요.',

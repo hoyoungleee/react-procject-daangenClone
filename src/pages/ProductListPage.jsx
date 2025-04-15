@@ -4,7 +4,7 @@ import { products } from '../assets/productData'; // ✅ 수정됨
 import styles from './ProductListPage.module.scss';
 
 const ProductList = () => {
-  const [visibleCount, setVisibleCount] = useState(8); // 초기 표시 상품 개수
+  const [visibleCount, setVisibleCount] = useState(5); // 초기 표시 상품 개수
   const [locationFilter, setLocationFilter] = useState(''); // 위치 필터 상태 (초기값: '')
   const [categoryFilter, setCategoryFilter] = useState(''); // 카테고리 필터 상태 (초기값: '')
   const [priceFilter, setPriceFilter] = useState(''); // 가격 필터 상태 (초기값: '')
