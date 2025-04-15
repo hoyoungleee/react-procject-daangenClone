@@ -41,7 +41,7 @@ const Module = () => {
           ></path>
         </g>
       </svg>
-      <h2>
+      <h2 className='wordSpace'>
         한남동에서
         <span className={styles.wordcontainer}>
           <span className={styles.wordSlider}>

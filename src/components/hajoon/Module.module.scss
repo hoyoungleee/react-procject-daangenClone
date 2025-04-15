@@ -11,14 +11,13 @@
   height: 32px;
   align-self: center;
   margin-right: 8px;
-}
-
-h2 {
-  font-size: 38px;
-  align-self: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  .wordSpace {
+    font-size: 38px;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .wordcontainer {

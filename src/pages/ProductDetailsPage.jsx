@@ -274,8 +274,8 @@ const ProductDetailsPage = () => {
   return (
     <div className={style.productDetailsPage}>
       <div className={style.breadcrumb}>
-        <span>홈</span>
-        <span>중고거래</span>
+        <span>홈</span>&nbsp;&gt;&nbsp;
+        <span>중고거래</span>&nbsp;&gt;&nbsp;
         <span>{title}</span>
       </div>
       <div className={style.mainContent}>

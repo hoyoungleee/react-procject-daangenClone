@@ -17,8 +17,8 @@
     margin-bottom: 10px;
   }
   .imgCropper {
-    width: 60vw; /* 원하는 가로 영역 */
-    height: 60vh; /* 원하는 세로 영역 */
+    width: 70vw; /* 원하는 가로 영역 */
+    height: 70vh; /* 원하는 세로 영역 */
     display: flex;
     justify-content: left;
     align-items: center;
@@ -86,7 +86,19 @@
 
       p {
         color: #181616;
+        margin: 5px;
         padding-left: 3.1em;
+      }
+      .info {
+        position: relative;
+        padding-left: 4em;
+
+        color: rgb(174, 169, 169);
+        font-size: 0.8rem;
+        span {
+          position: relative;
+          top: 4px;
+        }
       }
     }
   }

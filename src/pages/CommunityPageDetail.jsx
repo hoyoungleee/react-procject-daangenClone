@@ -8,6 +8,8 @@ import UserProfile from '../components/hoyoung/UserProfile';
 import ThumbButton from '../components/hoyoung/ThumbButton';
 import CommentButton from '../components/hoyoung/CommentButton';
 import BookMarkButton from '../components/hoyoung/BookMarkButton';
+import GrayThumbButton from '../components/hoyoung/GrayThumbButton';
+import GrayCommentButton from '../components/hoyoung/GrayCommentButton';
 
 const CommunityPageDetail = () => {
   // 지금 상세보기 페이지의 postId값을 URL로부터 읽어와야 한다.
@@ -35,9 +37,13 @@ const CommunityPageDetail = () => {
       <UserProfile post={post} user={foundUser} />
       <h1>{post.title}</h1>
       <div className={styles.content}>{post.content}</div>
-      <div className={styles.imgCropper}>
-        <img src={post.image}></img>
-      </div>
+
+      {post.images.map((image) => (
+        <div className={styles.imgCropper}>
+          <img src={image} />
+        </div>
+      ))}
+
       <div className={styles.content}>
         <div className={styles.iconRow}>
           <span className={styles.iconGroup}>
@@ -63,6 +69,19 @@ const CommunityPageDetail = () => {
             <div key={comment.id} className={styles.comment}>
               <UserProfile post={post} user={commentUser} />
               <p>{comment.content}</p>
+              <div className={styles.info}>
+                <span>
+                  <GrayThumbButton />
+                </span>
+                &nbsp;
+                {post.likes}
+                &nbsp; &nbsp;
+                <span>
+                  <GrayCommentButton />
+                </span>
+                &nbsp;
+                {foundComments.length}
+              </div>
             </div>
           );
         })}

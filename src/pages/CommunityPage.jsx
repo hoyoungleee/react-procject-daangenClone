@@ -2,7 +2,6 @@ import PostCard from '../components/hoyoung/CommunityPostCard';
 import styles from './CommunityPage.module.scss';
 import { posts } from '../assets/community-dummy-data';
 import { useSearchParams } from 'react-router-dom';
-import BlogFilter from '../components/BlogFilter';
 
 const CommunityPage = () => {
   // ?뒤에 값(쿼리스트링) 읽는법
@@ -18,24 +17,35 @@ const CommunityPage = () => {
   const search = searchParams.get('search')?.toLowerCase() || '';
 
   return (
-    <div className={styles.blog}>
-      <BlogFilter />
-      <div className={styles.grid}>
-        {posts
-          .filter((post) => category === 'all' || post.category === category)
-          .filter(
-            (post) =>
-              post.title.toLowerCase().includes(search) ||
-              post.excerpt.toLowerCase().includes(search),
-          )
-          .sort((a, b) =>
-            sort === 'latest'
-              ? new Date(b.date) - new Date(a.date)
-              : new Date(a.date) - new Date(b.date),
-          )
-          .map((post) => (
-            <PostCard key={post.id} post={post} />
-          ))}
+    <div>
+      <div className={styles.breadcrumb}>
+        <span>홈</span>&nbsp;&gt;&nbsp;
+        <span>동네생활</span>
+        <h2>서울특별시 서초구 서초동 동네생활</h2>
+      </div>
+      <div>
+        <div className={styles.sideMenu}></div>
+        <div className={styles.blog}>
+          <div>
+            {posts
+              .filter(
+                (post) => category === 'all' || post.category === category,
+              )
+              .filter(
+                (post) =>
+                  post.title.toLowerCase().includes(search) ||
+                  post.excerpt.toLowerCase().includes(search),
+              )
+              .sort((a, b) =>
+                sort === 'latest'
+                  ? new Date(b.date) - new Date(a.date)
+                  : new Date(a.date) - new Date(b.date),
+              )
+              .map((post) => (
+                <PostCard key={post.id} post={post} />
+              ))}
+          </div>
+        </div>
       </div>
     </div>
   );

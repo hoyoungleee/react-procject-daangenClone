@@ -80,8 +80,9 @@ export const posts = [
     content: '기구 많고 강사님 케어도 꼼꼼해요. 자세 교정 짱.',
     location: '합정동',
     date: '약 3시간 전',
-    image:
+    images: [
       'https://www.ksponco.or.kr/sports/files/view?id=2c68f5df-72b2-416b-a01f-566a6e8f675c&seq=2',
+    ],
     views: 211,
     likes: 11,
     bookmarks: 123,
@@ -94,8 +95,9 @@ export const posts = [
     content: '초보 러너 환영! 매주 토요일 한강에서 달려요.',
     location: '여의도동',
     date: '약 2시간 전',
-    image:
+    images: [
       'https://fpost.co.kr/board/data/file/special/2083791166_E5VOtx1y_1f8d7381ad16c6f8b131523bcb5fbb125fd1ad05.jpg',
+    ],
     views: 677,
     likes: 221,
     bookmarks: 214,
@@ -110,8 +112,9 @@ export const posts = [
     content: '동네에 생긴 무인 세탁소. 밤에도 이용 가능해서 편함.',
     location: '노원동',
     date: '약 4시간 전',
-    image:
+    images: [
       'https://cdn.ulsanpress.net/news/photo/202209/405533_185948_4617.jpg',
+    ],
     views: 18,
     likes: 15,
     bookmarks: 2,
@@ -124,8 +127,9 @@ export const posts = [
     content: '편의점 옆에 생긴 무인 택배함 개꿀!',
     location: '가산동',
     date: '약 10시간 전',
-    image:
+    images: [
       'https://lh5.googleusercontent.com/proxy/wIQYXicJdxTnc0wmLGKjBnUDL8lTmWBs2yRombR5XFD0yq63qeBCzPxftc3M-7x5IUBL-1UqJa-4AMqpRCbw_DafdaxvgQv4LiG1ef4kHhxu0w',
+    ],
     views: 78412,
     likes: 1,
     bookmarks: 24,
@@ -140,8 +144,9 @@ export const posts = [
     content: '검정 케이스, 홍대입구역 근처에서 떨어뜨렸어요.',
     location: '연남동',
     date: '약 7시간 전',
-    image:
+    images: [
       'https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/152/924fa4e4d7363ce467bc76b25d2d73b6_res.jpeg',
+    ],
     views: 4213,
     likes: 221,
     bookmarks: 2,
@@ -154,7 +159,7 @@ export const posts = [
     content: '말티즈, 이름은 복실이. 중성화 X. 5kg 정도예요.',
     location: '면목동',
     date: '약 6시간 전',
-    image: 'https://blog.malcang.com/wp-content/uploads/2024/03/1-1.png',
+    images: ['https://blog.malcang.com/wp-content/uploads/2024/03/1-1.png'],
     views: 12312123,
     likes: 56781,
     bookmarks: 76,
