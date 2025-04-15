@@ -1,7 +1,11 @@
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect } from 'react';
 import styles from './Module.module.scss';
+import AuthContext from './context/Location.js';
+import React, { useContext } from 'react';
 
 const Module = () => {
+  const { myLocation } = useContext(AuthContext); // 전역에서 가져온 위치 설정정
+
   const keyWord = [
     '맛집',
     '아이폰',
@@ -14,14 +18,14 @@ const Module = () => {
     '모임',
   ];
 
-  const [index, setIndex] = useState(0);
+  // const [index, setIndex] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % keyWord.length);
-    }, 2000);
-    return () => clearInterval(interval);
-  }, []);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setIndex((prev) => (prev + 1) % keyWord.length);
+  //   }, 2000);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   return (
     <div className={styles.locationicon}>
@@ -42,7 +46,7 @@ const Module = () => {
         </g>
       </svg>
       <h2 className='wordSpace'>
-        한남동에서
+        {myLocation}에서
         <span className={styles.wordcontainer}>
           <span className={styles.wordSlider}>
             {keyWord.map((word, idx) => {
