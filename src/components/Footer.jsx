@@ -108,6 +108,37 @@ const Footer = () => {
         </div>
 
         <div className={styles.divider}></div>
+
+        <div className={styles.additionalInfo}>
+          <p>(주) 당근마켓</p>
+          <p>대표: 김용현, 황도연 | 사업자번호: 375-87-00088</p>
+          <p>직업정보제공사업 신고번호: J1200020200016</p>
+          <p>통신판매업 신고번호: 2021-서울서초-2875</p>
+          <p>호스팅 사업자: Amazon Web Service(AWS)</p>
+          <p>주소: 서울특별시 구로구 디지털로 300, 10층 (당근서비스)</p>
+          <p>전화: 1544-9796 | 고객문의cs@daangnservice.com</p>
+
+          <ul className={styles.footerContent}>
+            <li>
+              <p>이용약관</p>
+            </li>
+            <li>
+              <p>개인정보처리방침</p>
+            </li>
+            <li>
+              <p>운영정책</p>
+            </li>
+            <li>
+              <p>위치기반서비스 이용약관</p>
+            </li>
+            <li>
+              <p>이용자보호 비전과 계획</p>
+            </li>
+            <li>
+              <p>청소년보호정책</p>
+            </li>
+          </ul>
+        </div>
       </div>
     </footer>
   );
