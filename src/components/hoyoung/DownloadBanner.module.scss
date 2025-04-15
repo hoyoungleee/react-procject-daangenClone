@@ -16,21 +16,24 @@
     .highlight {
       color: #f3561d;
       font-weight: bold;
-      font-size: 1.9rem;
+      font-size: 1.7rem;
+      margin: 0;
     }
 
     .title {
-      font-size: 2rem;
+      font-size: 2.2rem;
       font-weight: 700;
       color: #111;
+      margin: 0;
     }
 
     .buttons {
+      margin-top: 10px;
       display: flex;
       gap: 1rem;
 
       img {
-        height: 40px;
+        height: 35px;
         cursor: pointer;
       }
     }
