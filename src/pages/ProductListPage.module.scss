@@ -84,6 +84,17 @@
   }
 }
 
+.breadcrumb {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px;
+  padding-bottom: 0;
+  font-size: 0.8em;
+}
+.breadcrumb span {
+  margin-right: 5px;
+}
+
 .productListContainer {
   display: flex;
   grid-template-columns: repeat(auto-fill, 185px);
@@ -97,7 +108,7 @@
 .filterSection {
   width: 200px;
   padding: 20px;
-  border-right: 1px solid #ddd;
+  // border-right: 1px solid #ddd;
   display: flex;
   flex-direction: column;
   gap: 20px;
