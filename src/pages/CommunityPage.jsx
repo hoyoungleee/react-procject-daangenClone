@@ -3,6 +3,8 @@ import styles from './CommunityPage.module.scss';
 import { posts } from '../assets/community-dummy-data';
 import { useSearchParams } from 'react-router-dom';
 import SideMenu from '../components/hoyoung/SideMenu';
+import SearchBar from '../components/hajoon/SearchBar';
+import AuthProvider from '../components/hajoon/context/Location.jsx';
 
 const CommunityPage = () => {
   // ?뒤에 값(쿼리스트링) 읽는법
@@ -20,6 +22,9 @@ const CommunityPage = () => {
 
   return (
     <div>
+      <AuthProvider>
+        <SearchBar className={styles.searchbar} />
+      </AuthProvider>
       <div className={styles.breadcrumb}>
         <span>홈</span>&nbsp;&gt;&nbsp;
         <span>동네생활</span>
