@@ -4,7 +4,7 @@ import { products } from '../assets/productData'; // ✅ 수정됨
 import styles from './ProductListPage.module.scss';
 
 const ProductList = () => {
-  const [visibleCount, setVisibleCount] = useState(8); // 초기 표시 상품 개수
+  const [visibleCount, setVisibleCount] = useState(5); // 초기 표시 상품 개수
   const [locationFilter, setLocationFilter] = useState(''); // 위치 필터 상태 (초기값: '')
   const [categoryFilter, setCategoryFilter] = useState(''); // 카테고리 필터 상태 (초기값: '')
   const [priceFilter, setPriceFilter] = useState(''); // 가격 필터 상태 (초기값: '')
@@ -65,7 +65,12 @@ const ProductList = () => {
   const visibleLocations = showMoreLocations ? [...initialLocations, ...remainingLocations] : initialLocations;
 
   return (
-    <div className={styles.productListContainer}> {/* 전체 컨테이너 */}
+    <div className={styles.productListContainer}>
+       <div className={styles.headerSection}> {/* 새로운 div로 묶음 */}
+        <div className={styles.navigation}>
+          <Link to="/">홈</Link>  <Link to="/used-items">중고거래</Link>
+       
+
       <aside className={styles.filterSection}> {/* 필터 사이드바 */}
         <h3>위치</h3>
         <div>
@@ -179,7 +184,10 @@ const ProductList = () => {
           </label>
         </div>
       </aside>
+      </div>
+      </div>
 
+      <div className={styles.productListWrapper}>
       <div className={styles.productList}>
         {displayedProducts.map(product => (
           <Link
@@ -200,7 +208,9 @@ const ProductList = () => {
             </div>
           </Link>
         ))}
-              {hasMore && (
+              
+      </div>
+      {hasMore && (
         <button className={styles.loadMoreButton} onClick={handleLoadMore}>
           상품 더 보기 {/* ✅ UX 개선 */}
         </button>
