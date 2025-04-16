@@ -217,16 +217,10 @@ const ProductList = () => {
           </div>
         </aside>
         <div className={styles.productListWrapper}>
-          {filteredProducts.length === 0 && query.trim() !== '' ? (
-            locationFilter === '서초동' ? (
-              <div className={styles.noResultsProduct}>
-                서울특별시 서초구 서초동 “{query}” 검색 결과
-              </div>
-            ) : (
-              <div className={styles.noResultsProduct}>
-                <NoSearchResultProduct />
-              </div>
-            )
+          {filteredProducts.length === 0 ? (
+            <div className={styles.noResultsProduct}>
+              <NoSearchResultProduct />
+            </div>
           ) : (
             <div>
               {' '}
