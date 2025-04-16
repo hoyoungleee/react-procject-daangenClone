@@ -85,9 +85,26 @@ form {
   padding: 12px 0 12px 6px;
   font-size: 0.875rem;
   color: #868b94;
+  display: flex;
+  flex-wrap: wrap;
 
-  a {
-    margin-left: 5px;
+  .innerKeyDiv {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    white-space: nowrap; // 줄바꿈 없음
+    column-gap: 5px;
+
+    a {
+      margin-left: 5px;
+      color: #868b94;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #676b71;
+    }
   }
 }
 
