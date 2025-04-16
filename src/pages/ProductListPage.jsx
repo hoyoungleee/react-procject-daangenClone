@@ -90,7 +90,7 @@ const ProductList = () => {
     ? [...initialLocations, ...remainingLocations]
     : initialLocations;
 
-   return (
+  return (
     <div className={styles.productListContainer}>
       <div className={styles.headerSection}>
         <div className={styles.navigation}>
@@ -213,9 +213,19 @@ const ProductList = () => {
 
       <div className={styles.productListWrapper}>
         {filteredProducts.length === 0 && query.trim() !== '' ? (
-          <div className={styles.noResults}>
-            검색된 상품이 없습니다.
-          </div>
+          locationFilter === '서초동' ? (
+            <div className={styles.noResults}>
+              서울특별시 서초구 서초동 “{query}” 검색 결과
+              <br />
+              "서초동" 근처에 게시글이 없어요.
+              <br />
+              검색어를 수정하시거나, 다른 조건으로 검색해주세요.
+            </div>
+          ) : (
+            <div className={styles.noResults}>
+              검색된 상품이 없습니다.
+            </div>
+          )
         ) : (
           <div className={styles.productList}>
             {displayedProducts.map((product) => (
@@ -239,7 +249,6 @@ const ProductList = () => {
             ))}
           </div>
         )}
-
         {hasMore && filteredProducts.length > 0 && (
           <button className={styles.loadMoreButton} onClick={handleLoadMore}>
             상품 더 보기

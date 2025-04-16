@@ -71,11 +71,12 @@
 }
 
 .loadMoreButton {
-  margin-top: 20px;
+  // margin-top: 20px;
   width: 100%;
-  max-width: 720px; // 카드 3~4개 너비만큼
-  padding: 12px;
+  // max-width: 720px; // 카드 3~4개 너비만큼
+  padding: 3px 12px;
   font-size: 16px;
+  font-weight: 450;
   background-color: #f0eeee;
   border: 1px solid #ccc;
   border-radius: 8px;
