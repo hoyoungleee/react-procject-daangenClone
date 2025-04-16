@@ -96,7 +96,7 @@ const ProductList = () => {
               {' '}
               {/* 필터 사이드바 */}
               <h3>위치</h3>
-              <div>
+              <div className={styles.sector}>
                 <label key='all-locations'>
                   {' '}
                   {/* "전체" 옵션 추가 */}
@@ -128,7 +128,7 @@ const ProductList = () => {
                 )}
               </div>
               <h3>카테고리</h3>
-              <div>
+              <div className={styles.sector}>
                 <label key='all-categories'>
                   {' '}
                   {/* "전체" 옵션 추가 */}
@@ -156,7 +156,7 @@ const ProductList = () => {
               </div>
               {/* 가격 필터 (기존 코드 유지) */}
               <h3>가격</h3>
-              <div>
+              <div className={styles.sector}>
                 <label>
                   <input
                     type='radio'
