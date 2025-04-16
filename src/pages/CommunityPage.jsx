@@ -39,11 +39,11 @@ const CommunityPage = () => {
               .filter(
                 (post) =>
                   post.title.toLowerCase().includes(search) ||
-                  post.excerpt.toLowerCase().includes(search),
+                  post.content.toLowerCase().includes(search),
               )
               .sort((a, b) =>
                 sort === 'latest'
-                  ? new Date(b.date) - new Date(a.date)
+                  ? new Date(b.realDate) - new Date(a.date)
                   : new Date(a.date) - new Date(b.date),
               )
               .map((post) => (

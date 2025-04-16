@@ -23,6 +23,7 @@ const SideMenu = ({ categorys }) => {
         </Link>
         {categorys.map((category) => (
           <Link
+            key={Math.random()}
             to={`/community?category=${category}`}
             onClick={() => window.scrollTo(0, 0)}
             className={styles.link}
