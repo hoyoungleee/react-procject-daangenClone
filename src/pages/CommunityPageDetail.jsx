@@ -14,7 +14,20 @@ import EmptyComment from '../components/hoyoung/EmptyComment';
 import HotTopic from '../components/hoyoung/HotTopic';
 import DownloadBanner from '../components/hoyoung/DownloadBanner';
 
+import QrCodeModal from '../components/modal/QrCodeModal';
+
 const CommunityPageDetail = () => {
+  // 모달 상태 관리
+  const [isQrModalOpen, setIsQrModalOpen] = useState(false);
+  // 모달 열기 함수
+  const openQrModal = () => {
+    setIsQrModalOpen(true);
+  };
+  // 모달 닫기 함수
+  const closeQrModal = () => {
+    setIsQrModalOpen(false);
+  };
+
   // 지금 상세보기 페이지의 postId값을 URL로부터 읽어와야 한다.
   // 라우터 설정에 지정한 이름으로 글 번호를 얻어올 수 있다.
   const { postId } = useParams();
@@ -89,10 +102,11 @@ const CommunityPageDetail = () => {
           </div>
           <div className={styles.content}>
             <div className={styles.iconRow}>
-              <span className={styles.iconGroup}>
+              <span className={styles.iconGroup} onClick={openQrModal}>
                 <ThumbButton />
                 {post.likes}
               </span>
+              {isQrModalOpen && <QrCodeModal onClose={closeQrModal} />}{' '}
               <span className={styles.iconGroup}>
                 <CommentButton />
                 {sortComments.length}
