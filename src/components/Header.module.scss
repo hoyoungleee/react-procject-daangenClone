@@ -1,22 +1,36 @@
 .header {
-  background-color: white;
-  width: 100%;
-  padding: 0.5rem 0;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 999;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  width: 100%;
+  background-color: #fff;
+  z-index: 1000;
   transition: all 0.3s ease;
 }
 
+.showBorder {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.scrolled {
+  /* 명시적으로 box-shadow 제거 */
+}
+
 .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 10px 20px;
+}
+
+.left {
+  cursor: pointer;
+}
+
+.logo {
+  height: 40px;
 }
 
 .center {
@@ -25,41 +39,63 @@
   justify-content: center;
 }
 
-.searchBox {
+.menu {
   display: flex;
   align-items: center;
-  background-color: #f5f5f5;
-  border-radius: 20px;
-  padding: 6px 12px;
-  max-width: 400px;
-  width: 100%;
-  transition: all 0.3s ease;
-
-  .searchIcon {
-    font-size: 16px;
-    margin-right: 8px;
-    color: #666;
-  }
-
-  .searchInput {
-    border: none;
-    background: transparent;
-    outline: none;
-    font-size: 14px;
-    width: 100%;
-  }
 }
 
-.scrolled {
-  .left,
-  .menu,
-  .right {
-    display: none;
-  }
+.menuItem {
+  padding: 10px 15px;
+  cursor: pointer;
+  position: relative;
+  transition: opacity 0.3s;
+}
 
-  .searchBox {
-    margin: 0 auto;
-  }
+.menuItem.active {
+  opacity: 1;
+}
+
+.menuItem.dimmed {
+  opacity: 0.5;
+}
+
+.menuText {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.arrowIcon {
+  margin-left: 5px;
+  font-size: 12px;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  min-width: 150px;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dropdownItem {
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.dropdownItem:hover {
+  background-color: #f0f0f0;
+}
+
+.subIcon {
+  margin-left: 5px;
 }
 
 .linkWrapper {
@@ -67,123 +103,80 @@
   color: inherit;
 }
 
-.left {
+.right {
   display: flex;
   align-items: center;
-  cursor: pointer;
+  gap: 0.8rem;
+  height: 100%;
 
-  .logo {
-    height: 60px;
-    width: auto;
-  }
-}
-
-.menu {
-  display: flex;
-  gap: 1.5rem;
-  padding: 20px;
-
-  .menuItem {
-    color: black;
-    font-size: 14px;
+  .searchIcon {
     cursor: pointer;
-    position: relative;
-
-    &.active {
-      .dropdown {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-      }
+    color: #444;
+    display: flex;
+    align-items: center; // 아이콘 수직 정렬
+    height: 100%; // 부모 높이에 맞추기
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    svg {
+      font-size: 24px;
     }
 
-    &.dimmed {
-      color: gray;
-      opacity: 0.6;
-    }
-
-    .menuText {
-      display: flex;
-      font-weight: bold;
-      align-items: center;
-
-      .arrowIcon {
-        font-size: 10px;
-        padding-left: 5px;
-      }
-    }
-
-    .dropdown {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background-color: white;
-      color: black;
-      border-radius: 6px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-      padding: 8px;
-      z-index: 10;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-10px);
-      transition: all 0.2s ease-in-out;
-
-      .dropdownItem {
-        padding: 8px 5px;
-        font-size: 13px;
-        white-space: nowrap;
-        cursor: pointer;
-        border-radius: 4px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        &:hover {
-          background-color: rgba(249, 247, 247, 0.887);
-        }
-
-        .subIcon {
-          margin-left: 8px;
-        }
-      }
-    }
-  }
-}
-
-.right {
-  .downloadBtn {
-    position: relative;
-    background-color: #ea7221;
-    border: none;
-    border-radius: 6px;
-    color: white;
-    padding: 0.4rem 0.7rem;
-    font-weight: bold;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(255, 255, 255, 0.2);
-      opacity: 0;
-      transition: opacity 0.2s ease;
-      z-index: 1;
-      border-radius: 6px;
-    }
-
-    &:hover::after {
+    &.visible {
       opacity: 1;
-    }
-
-    span {
-      position: relative;
-      z-index: 2;
+      visibility: visible;
     }
   }
+
+  .downloadBtn {
+    padding: 8px 16px;
+    background-color: #ff6f0f;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+.searchDropdown {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+}
+
+.searchDropdownContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.categoryList {
+  display: flex;
+  font-size: 12px;
+  flex-wrap: nowrap; /* 한 줄로 나열 */
+  gap: 10px;
+  padding: 2px 4px 20px;
+  max-width: 65%;
+  margin: 0 auto;
+}
+
+.categoryItem {
+  color: #444;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 12px;
+  white-space: nowrap; /* 텍스트 줄 바꿈 방지 */
 }
