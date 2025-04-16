@@ -44,7 +44,7 @@ const SearchButton = () => {
             ></path>
           </g>
         </svg>
-        {myLocation}
+        {myLocation ? myLocation : '서초동'}
         <svg
           viewBox='0 0 24 24'
           fill='none'
