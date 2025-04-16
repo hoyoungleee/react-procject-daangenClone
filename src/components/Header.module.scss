@@ -30,7 +30,7 @@
 }
 
 .logo {
-  height: 50px;
+  height: 40px;
 }
 
 .center {
@@ -120,6 +120,9 @@
     transition: opacity 0.3s ease;
     svg {
       font-size: 24px;
+    }
+    &:hover {
+      opacity: 1;
     }
 
     &.visible {
