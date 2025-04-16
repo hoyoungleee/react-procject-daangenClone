@@ -19,7 +19,8 @@ const SearchBox = () => {
     '동네업체',
     '알바',
     '부동산',
-    '자동차',
+    '중고차차',
+    '동네생활',
     '모임',
   ];
 
@@ -101,8 +102,11 @@ const SearchBox = () => {
                   case '부동산':
                     path = 'house';
                     break;
-                  case '자동차':
+                  case '중고차':
                     path = 'car';
+                    break;
+                  case '동네생활':
+                    path = 'community';
                     break;
                   case '동네업체':
                     path = 'hometown';
