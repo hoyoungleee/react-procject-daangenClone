@@ -1,5 +1,9 @@
 # 🧾 당근마켓 클론코딩 단위 프로젝트 보고서
 
+### 완성된 프로젝트 견본 주소
+
+https://hoyoungleee.github.io/test-github-page
+
 ![image](https://github.com/user-attachments/assets/26f6657f-149a-4a00-9040-0833c96281f1)
 
 ## 📝 1. 기획서
