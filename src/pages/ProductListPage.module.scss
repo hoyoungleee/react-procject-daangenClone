@@ -1,3 +1,9 @@
+.pageContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
 .productList {
   display: grid;
   grid-template-columns: repeat(4, 185px); // 한 줄에 4개
@@ -101,13 +107,13 @@
   flex-direction: row; /* 변경: row로 설정하여 가로로 배치 */
   justify-content: center;
   gap: 20px;
-  padding: 20px; /* 전체 컨테이너에 패딩 추가 */
+  // padding: 20px; /* 전체 컨테이너에 패딩 추가 */
   min-height: 100vh; /* 필요하다면 유지 */
 }
 
 .filterSection {
   width: 200px;
-  padding: 20px;
+  padding-right: 65px;
   // border-right: 1px solid #ddd;
   display: flex;
   flex-direction: column;
@@ -190,7 +196,7 @@ button[type='button'] {
 
 .headerSection {
   margin-bottom: 20px; /* 필터 섹션과의 간격 조절 */
-  padding: 16px 24px 0; /* 상하 패딩 추가, 좌우 패딩은 상품 목록과 맞춤 */
+  // padding: 16px 24px 0; /* 상하 패딩 추가, 좌우 패딩은 상품 목록과 맞춤 */
 }
 
 .navigation {

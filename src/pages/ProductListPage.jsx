@@ -81,7 +81,7 @@ const ProductList = () => {
     : initialLocations;
 
   return (
-    <>
+    <div className={styles.pageContainer}>
       <div className={styles.breadcrumb}>
         <span>홈</span>&nbsp;&gt;&nbsp;
         <span>중고거래</span>
@@ -243,7 +243,7 @@ const ProductList = () => {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
