@@ -2,6 +2,7 @@ import PostCard from '../components/hoyoung/CommunityPostCard';
 import styles from './CommunityPage.module.scss';
 import { posts } from '../assets/community-dummy-data';
 import { useSearchParams } from 'react-router-dom';
+import SideMenu from '../components/hoyoung/SideMenu';
 
 const CommunityPage = () => {
   // ?뒤에 값(쿼리스트링) 읽는법
@@ -16,15 +17,19 @@ const CommunityPage = () => {
   // 옵셔널 체이닝 (?.): 값이 존재하면 적용, 존재하지 않으면 실행하지 않음.
   const search = searchParams.get('search')?.toLowerCase() || '';
 
+  const categorys = [...new Set(posts.map((post) => post.category))];
+
   return (
     <div>
       <div className={styles.breadcrumb}>
         <span>홈</span>&nbsp;&gt;&nbsp;
         <span>동네생활</span>
-        <h2>서울특별시 서초구 서초동 동네생활</h2>
+        <h1>서울특별시 서초구 서초동 동네생활</h1>
       </div>
-      <div>
-        <div className={styles.sideMenu}></div>
+      <div className={styles.container}>
+        <div className={styles.sideMenu}>
+          <SideMenu categorys={categorys} />
+        </div>
         <div className={styles.blog}>
           <div>
             {posts

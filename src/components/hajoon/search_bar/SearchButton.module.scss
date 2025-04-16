@@ -8,6 +8,9 @@
   font-size: 16px;
   height: 48px;
   margin-right: 16px;
+  flex-grow: 0.3;
+  column-gap: 3px;
+  font-weight: 600;
 }
 
 .searchButton:hover {

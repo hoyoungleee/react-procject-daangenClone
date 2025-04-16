@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io'; 
-import style from './ImageCarousel.module.scss'; 
+import React, { useState, useEffect } from 'react';
+import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
+import style from './ImageCarousel.module.scss';
 
-const ImageCarousel = ({ slides }) => {
-  const images = slides; 
-  const [currentIndex, setCurrentIndex] = useState(0);
+const ImageCarousel = ({ slides, currentIndex, setCurrentIndex }) => {
+  const images = slides;
   const imageCount = images ? images.length : 0;
 
   if (!images || imageCount === 0) {
@@ -46,7 +45,7 @@ const ImageCarousel = ({ slides }) => {
 
       {/* Image viewport */}
       <div className={style.carouselImageContainer}>
-         {/* Sliding div holding all images */}
+        {/* Sliding div holding all images */}
         <div
           className={style.carouselImageSlider}
           style={{ transform: `translateX(-${currentIndex * 100}%)` }} // Sliding logic

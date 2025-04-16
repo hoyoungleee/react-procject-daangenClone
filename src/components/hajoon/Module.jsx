@@ -1,7 +1,11 @@
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect } from 'react';
 import styles from './Module.module.scss';
+import AuthContext from './context/Location.js';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 
 const Module = () => {
+  const { myLocation } = useContext(AuthContext); // 전역에서 가져온 위치 설정정
+
   const keyWord = [
     '맛집',
     '아이폰',
@@ -15,13 +19,30 @@ const Module = () => {
   ];
 
   const [index, setIndex] = useState(0);
+  const [prevIndex, setPrevIndex] = useState(0);
+  const [width, setWidth] = useState(0);
+  const wordRef = useRef();
 
   useEffect(() => {
     const interval = setInterval(() => {
+      setPrevIndex(index);
       setIndex((prev) => (prev + 1) % keyWord.length);
-    }, 2000);
+    }, 2500);
     return () => clearInterval(interval);
-  }, []);
+  }, [index]);
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setIndex((prev) => (prev + 1) % keyWord.length);
+  //   }, 2000);
+  //   return () => clearInterval(interval);
+  // }, []);
+
+  useEffect(() => {
+    if (wordRef.current) {
+      setWidth(wordRef.current.offsetWidth);
+    }
+  }, [index]);
 
   return (
     <div className={styles.locationicon}>
@@ -41,21 +62,24 @@ const Module = () => {
           ></path>
         </g>
       </svg>
-      <h2 className='wordSpace'>
-        한남동에서
-        <span className={styles.wordcontainer}>
-          <span className={styles.wordSlider}>
-            {keyWord.map((word, idx) => {
-              return (
-                <span key={idx} className={styles.word}>
-                  {word}
-                </span>
-              );
-            })}
-            <span className={styles.word}>{keyWord[0]}</span>
+      <h2 className={styles.wordSpace}>
+        {myLocation}에서{'\u00A0'}
+        <span
+          className={styles.wordcontainer}
+          style={{ width: `${width}px`, transition: 'width 0.5s ease' }}
+        >
+          <span
+            ref={wordRef}
+            key={index}
+            className={`${styles.word} ${styles.entering}`}
+          >
+            {keyWord[index]}
+          </span>
+          <span key={index - 1} className={`${styles.word} ${styles.leaving}`}>
+            {keyWord[(index - 1 + keyWord.length) % keyWord.length]}
           </span>
         </span>
-        찾고 계신가요?
+        {'\u00A0'}찾고 계신가요?
       </h2>
     </div>
   );

@@ -1,11 +1,9 @@
 import React from 'react';
 import style from './SellerInfo.module.scss';
 
-const SellerInfo = ({ profilePicUrl, nickname, location, temperature }) => {
-
- 
+const SellerInfo = ({ profile: profileUrl, nickname, location, temperature }) => {
   const getMannerEmoji = (temp) => {
-    if (!temp) return ''; 
+    if (!temp) return '';
     if (temp >= 70) return '😇';
     if (temp >= 50) return '😊';
     if (temp >= 36.5) return '🙂';
@@ -15,17 +13,15 @@ const SellerInfo = ({ profilePicUrl, nickname, location, temperature }) => {
 
   const getTemperatureColorClass = (temp) => {
     if (!temp) return '';
-    if (temp >= 50) return style.tempHigh; 
-    if (temp >= 36.5) return style.tempNormal; 
-    return style.tempLow; 
+    if (temp >= 50) return style.tempHigh;
+    if (temp >= 36.5) return style.tempNormal;
+    return style.tempLow;
   };
 
   return (
-
     <div className={style.sellerInfoContainer}>
-
       <div className={style.profilePicWrapper}>
-        <img src={profilePicUrl} alt={`${nickname} 프로필`} className={style.profilePic}/>
+        <img src={profileUrl} alt={`${nickname} 프로필`} className={style.profilePic}/>
       </div>
 
       <div className={style.profileDetails}>
@@ -41,9 +37,7 @@ const SellerInfo = ({ profilePicUrl, nickname, location, temperature }) => {
           <span className={style.mannerEmoji}>{getMannerEmoji(temperature)}</span>
         </div>
         <span className={style.mannerLabel}>매너온도</span>
-
       </div>
-
     </div>
   );
 };

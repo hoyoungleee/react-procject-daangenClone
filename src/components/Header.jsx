@@ -4,11 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import { SlArrowDown } from 'react-icons/sl';
 import { GoArrowUpRight } from 'react-icons/go';
 import { Link } from 'react-router-dom';
+
 import { BiSearch } from 'react-icons/bi';
 import { IoLocationOutline } from 'react-icons/io5';
 import SearchWithCategoryDropdown from './SearchWithCategoryDropdown';
 import { IoIosArrowDown } from 'react-icons/io';
 import SearchButton from './SearchButton';
+
+import QrCodeModal from './modal/QrCodeModal'
 
 const Header = () => {
   const navigate = useNavigate();
@@ -18,6 +21,17 @@ const Header = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const searchInputRef = useRef(null);
   const searchDropdownRef = useRef(null);
+
+  // 모달 상태 관리
+  const [isQrModalOpen, setIsQrModalOpen] = useState(false);
+  // 모달 열기 함수
+  const openQrModal = () => {
+    setIsQrModalOpen(true);
+  };
+  // 모달 닫기 함수
+  const closeQrModal = () => {
+    setIsQrModalOpen(false);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -222,9 +236,11 @@ const Header = () => {
               <BiSearch size={24} />
             </span>
 
-            <button className={styles.downloadBtn}>
-              <span>앱 다운로드</span>
+            <button className={styles.downloadBtn} onClick={openQrModal}>
+              앱 다운로드
             </button>
+            {isQrModalOpen && <QrCodeModal onClose={closeQrModal} />}{' '}
+            {/*모달 랜더링링*/}
           </div>
         </div>
       </header>
