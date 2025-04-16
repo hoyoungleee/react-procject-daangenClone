@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import styles from './Hometown.module.scss';
 import AuthContext from './context/Location.js';
 

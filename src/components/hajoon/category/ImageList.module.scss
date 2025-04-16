@@ -16,6 +16,9 @@
 li {
   list-style: none;
   height: auto;
+  a {
+    text-decoration: none;
+  }
 }
 
 .imageDiv:hover {

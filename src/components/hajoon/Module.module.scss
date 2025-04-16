@@ -11,81 +11,86 @@
   height: 32px;
   align-self: center;
   margin-right: 8px;
-  .wordSpace {
-    font-size: 38px;
-    align-self: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+}
+
+.wordSpace {
+  font-size: 38px;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
 .wordcontainer {
-  height: 38px;
+  height: 51px;
   overflow: hidden;
   display: inline-block;
   position: relative;
   text-align: center;
-  line-height: 38px;
+  line-height: 51px;
   vertical-align: middle;
-}
-
-.wordSlider {
-  display: flex;
-  flex-direction: column;
-  animation: slide-up-fade 20s ease-in-out infinite;
+  transition: width 0.4s ease;
+  align-self: center;
 }
 
 .word {
+  position: absolute;
+  opacity: 0;
+  animation-fill-mode: forwards;
+  top: 0;
+  left: 0;
   height: 38px;
-  text-align: center;
-  line-height: 34px;
-  display: block;
-  align-items: center;
-  justify-content: center;
+  // text-align: center;
+  // line-height: 34px;
+  // display: inline-block;
+  // align-items: center;
+  // justify-content: center;
   font-size: 38px;
-  opacity: 1;
+  white-space: nowrap;
+
+  // opacity: 0;
+  // transform: translateY(10px);
+  // animation: fadeSlideUp 0.3s ease forwards;
 }
 
-@keyframes slide-up-fade {
-  0%,
-  10% {
-    transform: translateY(0);
+.entering {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.leaving {
+  animation: fadeOutUp 0.2s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
-  11%,
-  21% {
-    transform: translateY(-38px);
+  to {
+    opacity: 1;
+    transform: translateY(0px);
   }
-  22%,
-  32% {
-    transform: translateY(-76px);
+}
+
+@keyframes fadeOutUp {
+  from {
+    opacity: 1;
+    transform: translateY(0px);
   }
-  33%,
-  43% {
-    transform: translateY(-114px);
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
   }
-  44%,
-  54% {
-    transform: translateY(-152px);
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
-  55%,
-  65% {
-    transform: translateY(-190px);
-  }
-  66%,
-  76% {
-    transform: translateY(-228px);
-  }
-  77%,
-  87% {
-    transform: translateY(-266px);
-  }
-  88%,
-  98% {
-    transform: translateY(-304px);
-  }
-  99%,
-  100% {
-    transform: translateY(-342px);
+  to {
+    opacity: 1;
+    transform: translateY(0px);
   }
 }

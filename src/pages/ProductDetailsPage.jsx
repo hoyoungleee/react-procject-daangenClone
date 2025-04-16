@@ -6,6 +6,7 @@ import zoomStyle from './ImageZoom.module.scss';
 import products from '../assets/productData.js';
 import QrCodeModal from '../components/modal/QrCodeModal.jsx';
 import { useParams, useNavigate } from 'react-router-dom'; // useNavigate import 추가
+import DownloadBanner from '../components/hoyoung/DownloadBanner.jsx';
 
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -70,135 +71,138 @@ const ProductDetailsPage = () => {
   };
 
   return (
-    <div className={style.productDetailsPage}>
-      <div className={style.breadcrumb}>
-        <span>홈</span>&nbsp;&gt;&nbsp;
-        <span>중고거래</span>&nbsp;&gt;&nbsp;
-        <span>{title}</span>
-      </div>
-      <div className={style.mainContent}>
-        <div className={style.carouselSection}>
-          <ImageCarousel
-            slides={slides}
-            currentIndex={currentSlideIndex}
-            setCurrentIndex={setCurrentSlideIndex}
-          />{' '}
-          {/* props로 전달 */}
-          <SellerInfo {...sellerData} />
+    <>
+      <div className={style.productDetailsPage}>
+        <div className={style.breadcrumb}>
+          <span>홈</span>&nbsp;&gt;&nbsp;
+          <span>중고거래</span>&nbsp;&gt;&nbsp;
+          <span>{title}</span>
+        </div>
+        <div className={style.mainContent}>
+          <div className={style.carouselSection}>
+            <ImageCarousel
+              slides={slides}
+              currentIndex={currentSlideIndex}
+              setCurrentIndex={setCurrentSlideIndex}
+            />{' '}
+            {/* props로 전달 */}
+            <SellerInfo {...sellerData} />
+          </div>
+
+          <div className={style.infoSection}>
+            <h1 className={style.productTitle}>{title}</h1>
+
+            <div className={style.metaInfo}>
+              <span>{category}</span>
+              <span>·</span>
+              <span>{timeAgo}</span>
+            </div>
+
+            <div className={style.price}>{price}</div>
+
+            <div className={style.sellerInfo}>
+              <h2>판매자 정보</h2>
+              <p>[판매자 정보 영역]</p>
+            </div>
+
+            <div className={style.description}>
+              {description.map((line, index) => (
+                <p key={index}>{line}</p>
+              ))}
+            </div>
+
+            <div className={style.stats}>
+              <span>채팅 {stats.chats}</span>
+              <span>·</span>
+              <span>관심 {stats.likes}</span>
+              <span>·</span>
+              <span>조회 {stats.views}</span>
+            </div>
+
+            <button
+              type='button'
+              className={style.actionButton}
+              onClick={openQrModal}
+            >
+              당근 앱에서 보기
+            </button>
+          </div>
         </div>
 
-        <div className={style.infoSection}>
-          <h1 className={style.productTitle}>{title}</h1>
-
-          <div className={style.metaInfo}>
-            <span>{category}</span>
-            <span>·</span>
-            <span>{timeAgo}</span>
+        <div className={style.sellerProductsSection}>
+          <div className={style.sectionTitleContainer}>
+            <h2 className={style.sectionTitle}>
+              {sellerData.nickname} 님의 판매물품
+            </h2>
+            <button className={style.viewMoreLink} onClick={openQrModal}>
+              더 구경하기 &gt;
+            </button>
           </div>
 
-          <div className={style.price}>{price}</div>
+          <div className={style.sellerProductsList}>
+            {sellerOtherProducts.map((item, index) => (
+              <div
+                key={index}
+                className={style.productCard}
+                onClick={() => handleProductClick(item.id)} // 클릭 시 슬라이드 인덱스 초기화
+                style={{ cursor: 'pointer' }}
+              >
+                <div className={zoomStyle.imageContainer}>
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className={`${style.productImage} ${zoomStyle.image}`}
+                  />
+                </div>
 
-          <div className={style.sellerInfo}>
-            <h2>판매자 정보</h2>
-            <p>[판매자 정보 영역]</p>
-          </div>
-
-          <div className={style.description}>
-            {description.map((line, index) => (
-              <p key={index}>{line}</p>
+                <div className={style.productDetails}>
+                  <div className={style.productTitle}>{item.title}</div>
+                  <div className={style.productPrice}>{item.price}</div>
+                  <div className={style.productLocation}>{item.location}</div>
+                </div>
+              </div>
             ))}
           </div>
+        </div>
 
-          <div className={style.stats}>
-            <span>채팅 {stats.chats}</span>
-            <span>·</span>
-            <span>관심 {stats.likes}</span>
-            <span>·</span>
-            <span>조회 {stats.views}</span>
+        <div className={style.popularListingsSection}>
+          <div className={style.sectionTitleContainer}>
+            <h2 className={style.sectionTitle}>인기 매물</h2>
+            <button className={style.viewMoreLink} onClick={openQrModal}>
+              더 구경하기 &gt;
+            </button>
           </div>
-
-          <button
-            type='button'
-            className={style.actionButton}
-            onClick={openQrModal}
-          >
-            당근 앱에서 보기
+          <div className={style.popularListingsList}>
+            {popularListings.map((item, index) => (
+              <div
+                key={index}
+                className={style.productCard}
+                onClick={() => handleProductClick(item.id)} // 클릭 시 슬라이드 인덱스 초기화
+                style={{ cursor: 'pointer' }}
+              >
+                <div className={zoomStyle.imageContainer}>
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className={`${style.productImage} ${zoomStyle.image}`}
+                  />
+                </div>
+                <div className={style.productDetails}>
+                  <div className={style.productTitle}>{item.title}</div>
+                  <div className={style.productPrice}>{item.price}</div>
+                  <div className={style.productLocation}>{item.location}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <button className={style.viewMoreButton} onClick={openQrModal}>
+            더 구경하기
           </button>
+          {isQrModalOpen && <QrCodeModal onClose={closeQrModal} />}
         </div>
       </div>
-
-      <div className={style.sellerProductsSection}>
-        <div className={style.sectionTitleContainer}>
-          <h2 className={style.sectionTitle}>
-            {sellerData.nickname} 님의 판매물품
-          </h2>
-          <button className={style.viewMoreLink} onClick={openQrModal}>
-            더 구경하기 &gt;
-          </button>
-        </div>
-
-        <div className={style.sellerProductsList}>
-          {sellerOtherProducts.map((item, index) => (
-            <div
-              key={index}
-              className={style.productCard}
-              onClick={() => handleProductClick(item.id)} // 클릭 시 슬라이드 인덱스 초기화
-              style={{ cursor: 'pointer' }}
-            >
-              <div className={zoomStyle.imageContainer}>
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className={`${style.productImage} ${zoomStyle.image}`}
-                />
-              </div>
-
-              <div className={style.productDetails}>
-                <div className={style.productTitle}>{item.title}</div>
-                <div className={style.productPrice}>{item.price}</div>
-                <div className={style.productLocation}>{item.location}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className={style.popularListingsSection}>
-        <div className={style.sectionTitleContainer}>
-          <h2 className={style.sectionTitle}>인기 매물</h2>
-          <button className={style.viewMoreLink} onClick={openQrModal}>
-            더 구경하기 &gt;
-          </button>
-        </div>
-        <div className={style.popularListingsList}>
-          {popularListings.map((item, index) => (
-            <div
-              key={index}
-              className={style.productCard}
-              onClick={() => handleProductClick(item.id)} // 클릭 시 슬라이드 인덱스 초기화
-              style={{ cursor: 'pointer' }}
-            >
-              <div className={zoomStyle.imageContainer}>
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className={`${style.productImage} ${zoomStyle.image}`}
-                />
-              </div>
-              <div className={style.productDetails}>
-                <div className={style.productTitle}>{item.title}</div>
-                <div className={style.productPrice}>{item.price}</div>
-                <div className={style.productLocation}>{item.location}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-        <button className={style.viewMoreButton} onClick={openQrModal}>
-          더 구경하기
-        </button>
-        {isQrModalOpen && <QrCodeModal onClose={closeQrModal} />}
-      </div>
-    </div>
+      <DownloadBanner />
+    </>
   );
 };
 

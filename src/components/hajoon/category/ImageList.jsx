@@ -1,14 +1,17 @@
 import React from 'react';
 import { CategoryImages } from './CategoryImages';
 import styles from './ImageList.module.scss';
+import { Link } from 'react-router-dom';
 
-const ImageList = ({ type, text }) => {
+const ImageList = ({ type, text, link }) => {
   return (
     <li>
-      <div className={styles.imageDiv}>
-        {CategoryImages[type]}
-        {text}
-      </div>
+      <Link to={`${link}`}>
+        <div className={styles.imageDiv}>
+          {CategoryImages[type]}
+          {text}
+        </div>
+      </Link>
     </li>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import MainNav from '../components/MainNav';
 import styles from './IndexPage.module.scss';
 import Module from '../components/hajoon/Module';
