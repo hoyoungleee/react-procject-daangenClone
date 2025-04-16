@@ -96,8 +96,7 @@ const ProductList = () => {
 
   return (
     <>
-
-  <AuthProvider>
+      <AuthProvider>
         <SearchBar className={styles.searchbar} />
       </AuthProvider>
       <div className={styles.breadcrumb}>
@@ -129,7 +128,6 @@ const ProductList = () => {
                 </label>
                 {visibleLocations.map((location) => (
                   <label key={location}>
-
                     <input
                       type='radio'
                       name='location'
@@ -139,7 +137,6 @@ const ProductList = () => {
                     />
                     전체
                   </label>
-
                 ))}
                 {remainingLocations.length > 0 && (
                   <button type='button' onClick={toggleShowMoreLocations}>
@@ -150,8 +147,6 @@ const ProductList = () => {
               <h3>카테고리</h3>
               <div>
                 <label key='all-categories'>
-                  {' '}
-                  {/* "전체" 옵션 추가 */}
                   <input
                     type='radio'
                     name='category'
@@ -166,62 +161,14 @@ const ProductList = () => {
                     <input
                       type='radio'
                       name='category'
-                      value=''
-                      checked={categoryFilter === ''}
+                      value={category}
+                      checked={categoryFilter === category}
                       onChange={handleCategoryChange}
                     />
-                    전체
+                    {category}
                   </label>
-                  {uniqueCategories.map((category) => (
-                    <label key={category}>
-                      <input
-                        type='radio'
-                        name='category'
-                        value={category}
-                        checked={categoryFilter === category}
-                        onChange={handleCategoryChange}
-                      />
-                      {category}
-                    </label>
-                  ))}
-                </div>
-                {/* 가격 필터 (기존 코드 유지) */}
-                <h3>가격</h3>
-                <div className={styles.sector}>
-                  <label>
-                    <input
-                      type='radio'
-                      name='price'
-                      value='free'
-                      checked={priceFilter === 'free'}
-                      onChange={handlePriceChange}
-                    />
-                    나눔
-                  </label>
-                  <label>
-                    <input
-                      type='radio'
-                      name='price'
-                      value='under5000'
-                      checked={priceFilter === 'under5000'}
-                      onChange={handlePriceChange}
-                    />
-                    5,000원 이하
-                  </label>
-                  <label>
-                    <input
-                      type='radio'
-                      name='price'
-                      value='under10000'
-                      checked={priceFilter === 'under10000'}
-                      onChange={handlePriceChange}
-                    />
-                    10,000원 이하
-                  </label>
-
                 ))}
               </div>
-              {/* 가격 필터 (기존 코드 유지) */}
               <h3>가격</h3>
               <div>
                 <label>
@@ -276,9 +223,7 @@ const ProductList = () => {
                 </label>
               </div>
             </aside>
-
           </div>
-
           <div className={styles.productListWrapper}>
             <div className={styles.productList}>
               {displayedProducts.map((product) => (
@@ -312,7 +257,6 @@ const ProductList = () => {
               </button>
             )}
           </div>
-
           {hasMore && (
             <button className={styles.loadMoreButton} onClick={handleLoadMore}>
               더보기 {/* ✅ UX 개선 */}
