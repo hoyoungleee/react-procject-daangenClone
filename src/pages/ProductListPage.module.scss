@@ -115,7 +115,7 @@
 
 .filterSection {
   width: 200px;
-  padding-right: 65px;
+  padding-right: 130px;
   // border-right: 1px solid #ddd;
   display: flex;
   flex-direction: column;
@@ -239,6 +239,7 @@ button[type='button'] {
   align-items: center;
 }
 
+
 .searchbar {
   max-width: 100%;
   margin: 2rem auto 0 auto; // 위 간격을 2rem으로
@@ -248,4 +249,11 @@ button[type='button'] {
   Button {
     flex-grow: 0.1;
   }
+
+.noResults {
+  padding: 20px;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #777;
+
 }

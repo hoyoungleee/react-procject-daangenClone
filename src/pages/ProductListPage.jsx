@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { products } from '../assets/productData'; // ✅ 수정됨
+import { Link, useSearchParams } from 'react-router-dom';
+import { products } from '../assets/productData';
 import styles from './ProductListPage.module.scss';
 import SearchBar from '../components/hajoon/SearchBar';
 import AuthProvider from '../components/hajoon/context/Location.jsx';
 
 const ProductList = () => {
-  const [visibleCount, setVisibleCount] = useState(5); // 초기 표시 상품 개수
-  const [locationFilter, setLocationFilter] = useState(''); // 위치 필터 상태 (초기값: '')
-  const [categoryFilter, setCategoryFilter] = useState(''); // 카테고리 필터 상태 (초기값: '')
-  const [priceFilter, setPriceFilter] = useState(''); // 가격 필터 상태 (초기값: '')
-  const [filteredProducts, setFilteredProducts] = useState(products); // 필터링된 상품 목록
-  const [showMoreLocations, setShowMoreLocations] = useState(false); // 위치 더보기 상태
+  const [visibleCount, setVisibleCount] = useState(8);
+  const [locationFilter, setLocationFilter] = useState('');
+  const [categoryFilter, setCategoryFilter] = useState('');
+  const [priceFilter, setPriceFilter] = useState('');
+  const [filteredProducts, setFilteredProducts] = useState(products);
+  const [showMoreLocations, setShowMoreLocations] = useState(false);
+  const [searchParams] = useSearchParams(); // useSearchParams 훅 사용
+
+  const query = searchParams.get('search') || ''; // 초기값을 빈 문자열로 설정하여 null을 방지
+  console.log('현재 검색어:', query);
 
   const handleLoadMore = () => {
     setVisibleCount((prevCount) => prevCount + 8);
@@ -34,21 +38,30 @@ const ProductList = () => {
   };
 
   useEffect(() => {
-    // 필터링 로직 (위치, 카테고리, 가격)
     let finalFilteredProducts = products;
 
+    // 검색어에 따른 필터링
+    if (query) {
+      finalFilteredProducts = finalFilteredProducts.filter((product) =>
+        product.title.toLowerCase().includes(query.toLowerCase()),
+      );
+    }
+
+    // 위치 필터링
     if (locationFilter) {
       finalFilteredProducts = finalFilteredProducts.filter(
         (product) => product.sellerData.location === locationFilter,
       );
     }
 
+    // 카테고리 필터링
     if (categoryFilter) {
       finalFilteredProducts = finalFilteredProducts.filter(
         (product) => product.category === categoryFilter,
       );
     }
 
+    // 가격 필터링
     if (priceFilter === 'under5000') {
       finalFilteredProducts = finalFilteredProducts.filter(
         (product) => parseInt(product.price.replace(/[^0-9]/g, '')) <= 5000,
@@ -64,17 +77,16 @@ const ProductList = () => {
     }
 
     setFilteredProducts(finalFilteredProducts);
-    setVisibleCount(8); // 필터 변경 시 처음 8개만 보여주도록 초기화
-  }, [locationFilter, categoryFilter, priceFilter]);
+    setVisibleCount(8); // 필터링된 상품이 있을 때 다시 8개로 초기화
+  }, [query, locationFilter, categoryFilter, priceFilter]); // query가 변경될 때마다 실행
 
   const displayedProducts = filteredProducts.slice(0, visibleCount);
   const hasMore = visibleCount < filteredProducts.length;
 
-  // 상품 데이터에서 고유한 카테고리 목록 추출
   const uniqueCategories = [
     ...new Set(products.map((product) => product.category)),
   ];
-  const initialLocations = ['잠원동', '서초동']; // 초기 위치 목록 (실제 데이터에 맞게 수정)
+  const initialLocations = ['잠원동', '서초동'];
   const remainingLocations = [
     ...new Set(products.map((product) => product.sellerData.location)),
   ].filter((location) => !initialLocations.includes(location));
@@ -84,28 +96,40 @@ const ProductList = () => {
 
   return (
     <>
-      <AuthProvider>
+
+  <AuthProvider>
         <SearchBar className={styles.searchbar} />
       </AuthProvider>
-      <div className={styles.pageContainer}>
-        <div className={styles.breadcrumb}>
-          <span>홈</span>&nbsp;&gt;&nbsp;
-          <span>중고거래</span>
-          <h1>서울특별시 서초구 서초동 중고거래</h1>
-        </div>
-        <div className={styles.productListContainer}>
-          <div className={styles.headerSection}>
-            {' '}
-            {/* 새로운 div로 묶음 */}
-            <div className={styles.navigation}>
-              <aside className={styles.filterSection}>
-                {' '}
-                {/* 필터 사이드바 */}
-                <h3>위치</h3>
-                <div className={styles.sector}>
-                  <label key='all-locations'>
-                    {' '}
-                    {/* "전체" 옵션 추가 */}
+      <div className={styles.breadcrumb}>
+        <span>홈</span>&nbsp;&gt;&nbsp;
+        <span>중고거래</span>
+        <h1>서울특별시 서초구 서초동 중고거래</h1>
+      </div>
+      <div className={styles.productListContainer}>
+        <div className={styles.headerSection}>
+          {' '}
+          {/* 새로운 div로 묶음 */}
+          <div className={styles.navigation}>
+            <aside className={styles.filterSection}>
+              {' '}
+              {/* 필터 사이드바 */}
+              <h3>위치</h3>
+              <div>
+                <label key='all-locations'>
+                  {' '}
+                  {/* "전체" 옵션 추가 */}
+                  <input
+                    type='radio'
+                    name='location'
+                    value=''
+                    checked={locationFilter === ''}
+                    onChange={handleLocationChange}
+                  />
+                  전체
+                </label>
+                {visibleLocations.map((location) => (
+                  <label key={location}>
+
                     <input
                       type='radio'
                       name='location'
@@ -115,29 +139,30 @@ const ProductList = () => {
                     />
                     전체
                   </label>
-                  {visibleLocations.map((location) => (
-                    <label key={location}>
-                      <input
-                        type='radio'
-                        name='location'
-                        value={location}
-                        checked={locationFilter === location}
-                        onChange={handleLocationChange}
-                      />
-                      {location}
-                    </label>
-                  ))}
-                  {remainingLocations.length > 0 && (
-                    <button type='button' onClick={toggleShowMoreLocations}>
-                      {showMoreLocations ? '간략하게' : '더보기'}
-                    </button>
-                  )}
-                </div>
-                <h3>카테고리</h3>
-                <div className={styles.sector}>
-                  <label key='all-categories'>
-                    {' '}
-                    {/* "전체" 옵션 추가 */}
+
+                ))}
+                {remainingLocations.length > 0 && (
+                  <button type='button' onClick={toggleShowMoreLocations}>
+                    {showMoreLocations ? '간략하게' : '더보기'}
+                  </button>
+                )}
+              </div>
+              <h3>카테고리</h3>
+              <div>
+                <label key='all-categories'>
+                  {' '}
+                  {/* "전체" 옵션 추가 */}
+                  <input
+                    type='radio'
+                    name='category'
+                    value=''
+                    checked={categoryFilter === ''}
+                    onChange={handleCategoryChange}
+                  />
+                  전체
+                </label>
+                {uniqueCategories.map((category) => (
+                  <label key={category}>
                     <input
                       type='radio'
                       name='category'
@@ -193,29 +218,65 @@ const ProductList = () => {
                     />
                     10,000원 이하
                   </label>
-                  <label>
-                    <input
-                      type='radio'
-                      name='price'
-                      value='under20000'
-                      checked={priceFilter === 'under20000'}
-                      onChange={handlePriceChange}
-                    />
-                    20,000원 이하
-                  </label>
-                  <label>
-                    <input
-                      type='radio'
-                      name='price'
-                      value=''
-                      checked={priceFilter === ''}
-                      onChange={handlePriceChange}
-                    />
-                    전체 가격
-                  </label>
-                </div>
-              </aside>
-            </div>
+
+                ))}
+              </div>
+              {/* 가격 필터 (기존 코드 유지) */}
+              <h3>가격</h3>
+              <div>
+                <label>
+                  <input
+                    type='radio'
+                    name='price'
+                    value='free'
+                    checked={priceFilter === 'free'}
+                    onChange={handlePriceChange}
+                  />
+                  나눔
+                </label>
+                <label>
+                  <input
+                    type='radio'
+                    name='price'
+                    value='under5000'
+                    checked={priceFilter === 'under5000'}
+                    onChange={handlePriceChange}
+                  />
+                  5,000원 이하
+                </label>
+                <label>
+                  <input
+                    type='radio'
+                    name='price'
+                    value='under10000'
+                    checked={priceFilter === 'under10000'}
+                    onChange={handlePriceChange}
+                  />
+                  10,000원 이하
+                </label>
+                <label>
+                  <input
+                    type='radio'
+                    name='price'
+                    value='under20000'
+                    checked={priceFilter === 'under20000'}
+                    onChange={handlePriceChange}
+                  />
+                  20,000원 이하
+                </label>
+                <label>
+                  <input
+                    type='radio'
+                    name='price'
+                    value=''
+                    checked={priceFilter === ''}
+                    onChange={handlePriceChange}
+                  />
+                  전체 가격
+                </label>
+              </div>
+            </aside>
+
           </div>
 
           <div className={styles.productListWrapper}>
@@ -251,6 +312,12 @@ const ProductList = () => {
               </button>
             )}
           </div>
+
+          {hasMore && (
+            <button className={styles.loadMoreButton} onClick={handleLoadMore}>
+              더보기 {/* ✅ UX 개선 */}
+            </button>
+          )}
         </div>
       </div>
     </>
