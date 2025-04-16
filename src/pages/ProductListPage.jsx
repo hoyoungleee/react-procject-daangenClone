@@ -238,7 +238,7 @@ const ProductList = () => {
           </div>
           {hasMore && (
             <button className={styles.loadMoreButton} onClick={handleLoadMore}>
-              상품 더 보기 {/* ✅ UX 개선 */}
+              더보기
             </button>
           )}
         </div>
