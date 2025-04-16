@@ -12,7 +12,8 @@
 - **사이트명**: 당근마켓  
 - **주소**: [https://www.daangn.com](https://www.daangn.com)  
 - **스크린샷**:  
-  ![스크린샷 예시](./images/daangn_main.png)
+  ![image](https://github.com/user-attachments/assets/742129fe-c47e-4301-9a63-cf0ca1364f26)
+
 
 ### 📄 클론할 페이지
 
