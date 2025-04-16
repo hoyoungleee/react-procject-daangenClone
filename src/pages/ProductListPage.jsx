@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { products } from '../assets/productData';
 import styles from './ProductListPage.module.scss';
+import SearchBar from '../components/hajoon/SearchBar';
+import AuthProvider from '../components/hajoon/context/Location.jsx';
 
 const ProductList = () => {
   const [visibleCount, setVisibleCount] = useState(8);
@@ -94,6 +96,10 @@ const ProductList = () => {
 
   return (
     <>
+
+  <AuthProvider>
+        <SearchBar className={styles.searchbar} />
+      </AuthProvider>
       <div className={styles.breadcrumb}>
         <span>홈</span>&nbsp;&gt;&nbsp;
         <span>중고거래</span>
@@ -123,15 +129,17 @@ const ProductList = () => {
                 </label>
                 {visibleLocations.map((location) => (
                   <label key={location}>
+
                     <input
                       type='radio'
                       name='location'
-                      value={location}
-                      checked={locationFilter === location}
+                      value=''
+                      checked={locationFilter === ''}
                       onChange={handleLocationChange}
                     />
-                    {location}
+                    전체
                   </label>
+
                 ))}
                 {remainingLocations.length > 0 && (
                   <button type='button' onClick={toggleShowMoreLocations}>
@@ -158,12 +166,59 @@ const ProductList = () => {
                     <input
                       type='radio'
                       name='category'
-                      value={category}
-                      checked={categoryFilter === category}
+                      value=''
+                      checked={categoryFilter === ''}
                       onChange={handleCategoryChange}
                     />
-                    {category}
+                    전체
                   </label>
+                  {uniqueCategories.map((category) => (
+                    <label key={category}>
+                      <input
+                        type='radio'
+                        name='category'
+                        value={category}
+                        checked={categoryFilter === category}
+                        onChange={handleCategoryChange}
+                      />
+                      {category}
+                    </label>
+                  ))}
+                </div>
+                {/* 가격 필터 (기존 코드 유지) */}
+                <h3>가격</h3>
+                <div className={styles.sector}>
+                  <label>
+                    <input
+                      type='radio'
+                      name='price'
+                      value='free'
+                      checked={priceFilter === 'free'}
+                      onChange={handlePriceChange}
+                    />
+                    나눔
+                  </label>
+                  <label>
+                    <input
+                      type='radio'
+                      name='price'
+                      value='under5000'
+                      checked={priceFilter === 'under5000'}
+                      onChange={handlePriceChange}
+                    />
+                    5,000원 이하
+                  </label>
+                  <label>
+                    <input
+                      type='radio'
+                      name='price'
+                      value='under10000'
+                      checked={priceFilter === 'under10000'}
+                      onChange={handlePriceChange}
+                    />
+                    10,000원 이하
+                  </label>
+
                 ))}
               </div>
               {/* 가격 필터 (기존 코드 유지) */}
@@ -221,33 +276,43 @@ const ProductList = () => {
                 </label>
               </div>
             </aside>
-          </div>
-        </div>
 
-        <div className={styles.productListWrapper}>
-          <div className={styles.productList}>
-            {displayedProducts.map((product) => (
-              <Link
-                to={`/products/${product.id}`}
-                key={product.id}
-                className={styles.productItem}
-              >
-                <div className={styles.imageContainer}>
-                  <img
-                    src={product.slides?.[0] || '/assets/default-image.jpg'} // ✅ 안정성 개선
-                    alt={product.title}
-                  />
-                </div>
-                <div className={styles.productInfo}>
-                  <h3 className={styles.productTitle}>{product.title}</h3>
-                  <div className={styles.productPrice}>{product.price}</div>
-                  <div className={styles.productLocation}>
-                    {product.sellerData.location}
-                  </div>
-                </div>
-              </Link>
-            ))}
           </div>
+
+          <div className={styles.productListWrapper}>
+            <div className={styles.productList}>
+              {displayedProducts.map((product) => (
+                <Link
+                  to={`/products/${product.id}`}
+                  key={product.id}
+                  className={styles.productItem}
+                >
+                  <div className={styles.imageContainer}>
+                    <img
+                      src={product.slides?.[0] || '/assets/default-image.jpg'} // ✅ 안정성 개선
+                      alt={product.title}
+                    />
+                  </div>
+                  <div className={styles.productInfo}>
+                    <h3 className={styles.productTitle}>{product.title}</h3>
+                    <div className={styles.productPrice}>{product.price}</div>
+                    <div className={styles.productLocation}>
+                      {product.sellerData.location}
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            {hasMore && (
+              <button
+                className={styles.loadMoreButton}
+                onClick={handleLoadMore}
+              >
+                더보기
+              </button>
+            )}
+          </div>
+
           {hasMore && (
             <button className={styles.loadMoreButton} onClick={handleLoadMore}>
               더보기 {/* ✅ UX 개선 */}

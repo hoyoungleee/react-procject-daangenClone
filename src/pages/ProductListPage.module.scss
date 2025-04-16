@@ -239,9 +239,21 @@ button[type='button'] {
   align-items: center;
 }
 
+
+.searchbar {
+  max-width: 100%;
+  margin: 2rem auto 0 auto; // 위 간격을 2rem으로
+  padding: 0 2rem;
+  width: 1200px;
+
+  Button {
+    flex-grow: 0.1;
+  }
+
 .noResults {
   padding: 20px;
   text-align: center;
   font-size: 1.2rem;
   color: #777;
+
 }

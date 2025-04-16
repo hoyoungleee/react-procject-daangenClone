@@ -150,20 +150,17 @@ const SearchBox = () => {
         </div>
       </form>
       <div className={styles.showKeyword}>
-        인기검색어
-        <a href='#'> 메롱 </a>
-        <a href='#'> 메롱 </a>
-        <a href='#'> 메롱 </a>
-        <a href='#'> 메롱 </a>
-        <a href='#'> 메롱 </a>
-        <a href='#'> 메롱 </a>
-        <a href='#'> 메롱 </a>
-        <a href='#'> 메롱 </a>
-        <a href='#'> 메롱 </a>
-        <a href='#'> 메롱 </a>
-        <a href='#'> 메롱 </a>
-        <a href='#'> 메롱 </a>
-        <a href='#'> 메롱 </a>
+        <div className={styles.innerKeyDiv}>
+          인기검색어
+          <a href='#'> 뮤직뱅크 </a>
+          <a href='#'> 샵 </a>
+          <a href='#'> 동방신기 </a>
+          <a href='#'> 소녀시대 </a>
+          <a href='#'> 카시오페아 </a>
+          <a href='#'> SS501 </a>
+          <a href='#'> 제빵왕 김탁구 </a>
+          <a href='#'> 너는내운명 </a>
+        </div>
       </div>
     </div>
   );
