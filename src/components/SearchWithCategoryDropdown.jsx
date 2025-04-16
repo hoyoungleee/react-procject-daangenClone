@@ -1,13 +1,21 @@
 import { FaArrowRight } from 'react-icons/fa';
 import React, { useState } from 'react';
-import { IoIosArrowDown } from 'react-icons/io';
 import { FaCaretDown } from 'react-icons/fa';
-
+import { useNavigate } from 'react-router-dom';
 import styles from './SearchWithCategoryDropdown.module.scss';
 
 const SearchWithCategoryDropdown = ({ searchInputRef, showSearchButton }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('중고거래');
+  const navigate = useNavigate();
+  const handleSearch = () => {
+    const query = searchInputRef.current?.value.trim();
+    if (!query) return;
+
+    navigate(
+      `/used-items?keyword=${encodeURIComponent(query)}&category=${encodeURIComponent(selectedCategory)}`,
+    );
+  };
 
   const categories = [
     '중고거래',
@@ -54,10 +62,13 @@ const SearchWithCategoryDropdown = ({ searchInputRef, showSearchButton }) => {
         type='text'
         placeholder='검색어를 입력해주세요'
         className={styles.searchInput}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') handleSearch();
+        }}
       />
 
       {showSearchButton && (
-        <button className={styles.showSearchButton}>
+        <button className={styles.showSearchButton} onClick={handleSearch}>
           <FaArrowRight className={styles.showSearchButtonIcon} />
         </button>
       )}
