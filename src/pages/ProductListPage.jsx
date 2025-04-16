@@ -68,7 +68,7 @@ const ProductList = () => {
     <div className={styles.productListContainer}>
        <div className={styles.headerSection}> {/* 새로운 div로 묶음 */}
         <div className={styles.navigation}>
-          <Link to="/">홈</Link> > <Link to="/used-items">중고거래</Link>
+          <Link to="/">홈</Link>  <Link to="/used-items">중고거래</Link>
        
 
       <aside className={styles.filterSection}> {/* 필터 사이드바 */}
@@ -187,6 +187,7 @@ const ProductList = () => {
       </div>
       </div>
 
+      <div className={styles.productListWrapper}>
       <div className={styles.productList}>
         {displayedProducts.map(product => (
           <Link
@@ -207,7 +208,9 @@ const ProductList = () => {
             </div>
           </Link>
         ))}
-              {hasMore && (
+              
+      </div>
+      {hasMore && (
         <button className={styles.loadMoreButton} onClick={handleLoadMore}>
           상품 더 보기 {/* ✅ UX 개선 */}
         </button>
