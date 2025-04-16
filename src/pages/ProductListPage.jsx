@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { products } from '../assets/productData';
 import styles from './ProductListPage.module.scss';
-import SearchBar from '../components/hajoon/SearchBar';
+import NoSearchResultProduct from './NoSearchResultProduct';
 import AuthProvider from '../components/hajoon/context/Location.jsx';
+import SearchBar from '../components/hajoon/SearchBar';
 
 const ProductList = () => {
   const [visibleCount, setVisibleCount] = useState(8);
@@ -105,162 +106,163 @@ const ProductList = () => {
         <h1>서울특별시 서초구 서초동 중고거래</h1>
       </div>
       <div className={styles.productListContainer}>
-        <div className={styles.headerSection}>
-          {' '}
-          {/* 새로운 div로 묶음 */}
-          <div className={styles.navigation}>
-            <aside className={styles.filterSection}>
-              {' '}
-              {/* 필터 사이드바 */}
-              <h3>위치</h3>
-              <div>
-                <label key='all-locations'>
-                  {' '}
-                  {/* "전체" 옵션 추가 */}
-                  <input
-                    type='radio'
-                    name='location'
-                    value=''
-                    checked={locationFilter === ''}
-                    onChange={handleLocationChange}
-                  />
-                  전체
-                </label>
-                {visibleLocations.map((location) => (
-                  <label key={location}>
-                    <input
-                      type='radio'
-                      name='location'
-                      value=''
-                      checked={locationFilter === ''}
-                      onChange={handleLocationChange}
-                    />
-                    전체
-                  </label>
-                ))}
-                {remainingLocations.length > 0 && (
-                  <button type='button' onClick={toggleShowMoreLocations}>
-                    {showMoreLocations ? '간략하게' : '더보기'}
-                  </button>
-                )}
-              </div>
-              <h3>카테고리</h3>
-              <div>
-                <label key='all-categories'>
-                  <input
-                    type='radio'
-                    name='category'
-                    value=''
-                    checked={categoryFilter === ''}
-                    onChange={handleCategoryChange}
-                  />
-                  전체
-                </label>
-                {uniqueCategories.map((category) => (
-                  <label key={category}>
-                    <input
-                      type='radio'
-                      name='category'
-                      value={category}
-                      checked={categoryFilter === category}
-                      onChange={handleCategoryChange}
-                    />
-                    {category}
-                  </label>
-                ))}
-              </div>
-              <h3>가격</h3>
-              <div>
-                <label>
-                  <input
-                    type='radio'
-                    name='price'
-                    value='free'
-                    checked={priceFilter === 'free'}
-                    onChange={handlePriceChange}
-                  />
-                  나눔
-                </label>
-                <label>
-                  <input
-                    type='radio'
-                    name='price'
-                    value='under5000'
-                    checked={priceFilter === 'under5000'}
-                    onChange={handlePriceChange}
-                  />
-                  5,000원 이하
-                </label>
-                <label>
-                  <input
-                    type='radio'
-                    name='price'
-                    value='under10000'
-                    checked={priceFilter === 'under10000'}
-                    onChange={handlePriceChange}
-                  />
-                  10,000원 이하
-                </label>
-                <label>
-                  <input
-                    type='radio'
-                    name='price'
-                    value='under20000'
-                    checked={priceFilter === 'under20000'}
-                    onChange={handlePriceChange}
-                  />
-                  20,000원 이하
-                </label>
-                <label>
-                  <input
-                    type='radio'
-                    name='price'
-                    value=''
-                    checked={priceFilter === ''}
-                    onChange={handlePriceChange}
-                  />
-                  전체 가격
-                </label>
-              </div>
-            </aside>
-          </div>
-          <div className={styles.productListWrapper}>
-            <div className={styles.productList}>
-              {displayedProducts.map((product) => (
-                <Link
-                  to={`/products/${product.id}`}
-                  key={product.id}
-                  className={styles.productItem}
-                >
-                  <div className={styles.imageContainer}>
-                    <img
-                      src={product.slides?.[0] || '/assets/default-image.jpg'} // ✅ 안정성 개선
-                      alt={product.title}
-                    />
-                  </div>
-                  <div className={styles.productInfo}>
-                    <h3 className={styles.productTitle}>{product.title}</h3>
-                    <div className={styles.productPrice}>{product.price}</div>
-                    <div className={styles.productLocation}>
-                      {product.sellerData.location}
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-            {hasMore && (
-              <button
-                className={styles.loadMoreButton}
-                onClick={handleLoadMore}
-              >
-                더보기
+        <aside className={styles.filterSection}>
+          <h3>위치</h3>
+          <div>
+            <label key='all-locations'>
+              <input
+                type='radio'
+                name='location'
+                value=''
+                checked={locationFilter === ''}
+                onChange={handleLocationChange}
+              />
+              전체
+            </label>
+            {visibleLocations.map((location) => (
+              <label key={location}>
+                <input
+                  type='radio'
+                  name='location'
+                  value={location}
+                  checked={locationFilter === location}
+                  onChange={handleLocationChange}
+                />
+                {location}
+              </label>
+            ))}
+            {remainingLocations.length > 0 && (
+              <button type='button' onClick={toggleShowMoreLocations}>
+                {showMoreLocations ? '간략하게' : '더보기'}
               </button>
             )}
           </div>
-          {hasMore && (
-            <button className={styles.loadMoreButton} onClick={handleLoadMore}>
-              더보기 {/* ✅ UX 개선 */}
-            </button>
+          <h3>카테고리</h3>
+          <div>
+            <label key='all-categories'>
+              <input
+                type='radio'
+                name='category'
+                value=''
+                checked={categoryFilter === ''}
+                onChange={handleCategoryChange}
+              />
+              전체
+            </label>
+            {uniqueCategories.map((category) => (
+              <label key={category}>
+                <input
+                  type='radio'
+                  name='category'
+                  value={category}
+                  checked={categoryFilter === category}
+                  onChange={handleCategoryChange}
+                />
+                {category}
+              </label>
+            ))}
+          </div>
+          <h3>가격</h3>
+          <div>
+            <label>
+              <input
+                type='radio'
+                name='price'
+                value='free'
+                checked={priceFilter === 'free'}
+                onChange={handlePriceChange}
+              />
+              나눔
+            </label>
+            <label>
+              <input
+                type='radio'
+                name='price'
+                value='under5000'
+                checked={priceFilter === 'under5000'}
+                onChange={handlePriceChange}
+              />
+              5,000원 이하
+            </label>
+            <label>
+              <input
+                type='radio'
+                name='price'
+                value='under10000'
+                checked={priceFilter === 'under10000'}
+                onChange={handlePriceChange}
+              />
+              10,000원 이하
+            </label>
+            <label>
+              <input
+                type='radio'
+                name='price'
+                value='under20000'
+                checked={priceFilter === 'under20000'}
+                onChange={handlePriceChange}
+              />
+              20,000원 이하
+            </label>
+            <label>
+              <input
+                type='radio'
+                name='price'
+                value=''
+                checked={priceFilter === ''}
+                onChange={handlePriceChange}
+              />
+              전체 가격
+            </label>
+          </div>
+        </aside>
+        <div className={styles.productListWrapper}>
+          {filteredProducts.length === 0 && query.trim() !== '' ? (
+            locationFilter === '서초동' ? (
+              <div className={styles.noResultsProduct}>
+                서울특별시 서초구 서초동 “{query}” 검색 결과
+              </div>
+            ) : (
+              <div className={styles.noResultsProduct}>
+                <NoSearchResultProduct />
+              </div>
+            )
+          ) : (
+            <div>
+              {' '}
+              {/* 상품 목록과 더보기 버튼을 감싸는 div 추가 */}
+              <div className={styles.productList}>
+                {displayedProducts.map((product) => (
+                  <Link
+                    to={`/products/${product.id}`}
+                    key={product.id}
+                    className={styles.productItem}
+                  >
+                    <div className={styles.imageContainer}>
+                      <img
+                        src={product.slides?.[0] || '/assets/default-image.jpg'} // ✅ 안정성 개선
+                        alt={product.title}
+                      />
+                    </div>
+                    <div className={styles.productInfo}>
+                      <h3 className={styles.productTitle}>{product.title}</h3>
+                      <div className={styles.productPrice}>{product.price}</div>
+                      <div className={styles.productLocation}>
+                        {product.sellerData.location}
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+              {hasMore && (
+                <button
+                  className={styles.loadMoreButton}
+                  onClick={handleLoadMore}
+                >
+                  더보기 {/* ✅ UX 개선 */}
+                </button>
+              )}
+            </div>
           )}
         </div>
       </div>
