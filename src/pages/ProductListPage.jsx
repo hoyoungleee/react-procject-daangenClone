@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { products } from '../assets/productData'; // ✅ 수정됨
+import { Link, useSearchParams } from 'react-router-dom';
+import { products } from '../assets/productData';
 import styles from './ProductListPage.module.scss';
 
 const ProductList = () => {
-  const [visibleCount, setVisibleCount] = useState(8); // 초기 표시 상품 개수
-  const [locationFilter, setLocationFilter] = useState(''); // 위치 필터 상태 (초기값: '')
-  const [categoryFilter, setCategoryFilter] = useState(''); // 카테고리 필터 상태 (초기값: '')
-  const [priceFilter, setPriceFilter] = useState(''); // 가격 필터 상태 (초기값: '')
-  const [filteredProducts, setFilteredProducts] = useState(products); // 필터링된 상품 목록
-  const [showMoreLocations, setShowMoreLocations] = useState(false); // 위치 더보기 상태
+  const [visibleCount, setVisibleCount] = useState(8);
+  const [locationFilter, setLocationFilter] = useState('');
+  const [categoryFilter, setCategoryFilter] = useState('');
+  const [priceFilter, setPriceFilter] = useState('');
+  const [filteredProducts, setFilteredProducts] = useState(products);
+  const [showMoreLocations, setShowMoreLocations] = useState(false);
+  const [searchParams] = useSearchParams(); // useSearchParams 훅 사용
+
+  const query = searchParams.get('search') || ''; // 초기값을 빈 문자열로 설정하여 null을 방지
+  console.log('현재 검색어:', query);
 
   const handleLoadMore = () => {
     setVisibleCount((prevCount) => prevCount + 8);
@@ -32,21 +36,30 @@ const ProductList = () => {
   };
 
   useEffect(() => {
-    // 필터링 로직 (위치, 카테고리, 가격)
     let finalFilteredProducts = products;
 
+    // 검색어에 따른 필터링
+    if (query) {
+      finalFilteredProducts = finalFilteredProducts.filter((product) =>
+        product.title.toLowerCase().includes(query.toLowerCase()),
+      );
+    }
+
+    // 위치 필터링
     if (locationFilter) {
       finalFilteredProducts = finalFilteredProducts.filter(
         (product) => product.sellerData.location === locationFilter,
       );
     }
 
+    // 카테고리 필터링
     if (categoryFilter) {
       finalFilteredProducts = finalFilteredProducts.filter(
         (product) => product.category === categoryFilter,
       );
     }
 
+    // 가격 필터링
     if (priceFilter === 'under5000') {
       finalFilteredProducts = finalFilteredProducts.filter(
         (product) => parseInt(product.price.replace(/[^0-9]/g, '')) <= 5000,
@@ -62,8 +75,8 @@ const ProductList = () => {
     }
 
     setFilteredProducts(finalFilteredProducts);
-    setVisibleCount(8); // 필터 변경 시 처음 8개만 보여주도록 초기화
-  }, [locationFilter, categoryFilter, priceFilter]);
+    setVisibleCount(8); // 필터링된 상품이 있을 때 다시 8개로 초기화
+  }, [query, locationFilter, categoryFilter, priceFilter]); // query가 변경될 때마다 실행
 
   const displayedProducts = filteredProducts.slice(0, visibleCount);
   const hasMore = visibleCount < filteredProducts.length;
