@@ -1,12 +1,98 @@
-# React + Vite
+# 🧾 당근마켓 클론코딩 단위 프로젝트 보고서
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📝 1. 기획서
 
-Currently, two official plugins are available:
+### 📌 클론할 사이트 선정 이유
+사용자 간 중고 거래를 중심으로 한 실시간 커뮤니티 플랫폼이라는 점에서 활용도가 높고, 주요 기능이 다양하게 구성되어 있어 학습에 적합함.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 🌐 참고한 원본 사이트
+- **사이트명**: 당근마켓  
+- **주소**: [https://www.daangn.com](https://www.daangn.com)  
+- **스크린샷**:  
+  ![스크린샷 예시](./images/daangn_main.png)
 
-## Expanding the ESLint configuration
+### 📄 클론할 페이지
+- 메인 페이지
+- 상품 상세 페이지
+- 상품 등록 페이지
+- 로그인/회원가입 페이지
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 🎯 프로젝트 목표
+- React를 활용한 SPA 구조 학습  
+- 실제 서비스 수준의 UI/UX 구현  
+- Context API 및 React Hook 사용  
+
+### 🗓 일정 계획
+
+| 주차 | 진행 내용 |
+|------|-----------|
+| 1주차 | 사이트 분석 및 기획서 작성 |
+| 2주차 | 레이아웃 구성 및 주요 컴포넌트 구현 |
+| 3주차 | 기능 개발 및 API 연결 |
+| 4주차 | 테스트, 배포 및 마무리 문서 작성 |
+
+---
+
+## 📋 2. 요구사항 정의서
+
+### 사용자 요구사항
+
+| 항목 | 설명 |
+|------|------|
+| 회원가입/로그인 | 사용자는 이메일/비밀번호로 로그인 및 가입 가능해야 함 |
+| 상품 등록 | 사용자는 이미지를 첨부하여 상품 등록 가능 |
+| 상품 조회 | 메인 페이지에서 상품 리스트를 확인 가능 |
+| 상품 상세보기 | 상품 클릭 시 상세 페이지로 이동 |
+| 채팅 기능 (선택사항) | 구매자-판매자 간 실시간 메시지 기능 (개발 여부에 따라 유동적) |
+
+---
+
+## 💻 3. 소스코드
+
+전체 프로젝트는 [GitHub Repository](https://github.com/본인계정/daangn-clone) 에 업로드 되어 있습니다.
+
+---
+
+## 🌐 4. SPA 사이트
+
+- **배포 URL**: [https://본인계정.github.io/daangn-clone](https://본인계정.github.io/daangn-clone)  
+- **배포 방식**: GitHub Pages + `npm run build`
+
+---
+
+## ✅ 5. 테스트케이스
+
+| 테스트 항목 | 테스트 방법 | 예상 결과 |
+|-------------|--------------|-------------|
+| 상품 리스트 렌더링 | 메인 페이지 접속 시 | 등록된 상품 목록이 노출되어야 함 |
+| 상품 상세 페이지 이동 | 리스트에서 상품 클릭 | 해당 상품의 상세 정보 확인 가능 |
+| 상품 등록 | 로그인 후 상품 등록 | 새 상품이 리스트에 노출되어야 함 |
+| 필터 기능 작동 여부 | 필터 버튼 클릭 시 | 카테고리별로 상품 정렬 |
+
+> 테스트 관련 스크린샷 및 gif는 `./test-assets` 폴더에 첨부
+
+---
+
+## 📊 6. 테스트 결과서
+
+| 항목 | 결과 | 원인 및 해결방안 |
+|------|------|----------------|
+| 상품 리스트 렌더링 | ✅ 성공 | - |
+| 상세 페이지 이동 | ✅ 성공 | - |
+| 상품 등록 | ❌ 실패 | 이미지 업로드 API 오류 → 백엔드 목 데이터로 임시 처리 |
+| 필터 기능 | ✅ 성공 | - |
+
+### 📌 개선사항
+- 이미지 업로드 기능을 Firebase Storage와 연결 예정
+- 반응형 UI 최적화 필요
+- 페이지 전환 시 로딩 애니메이션 추가 고려
+
+---
+
+## 📮 기타 사항
+
+- 본 프로젝트는 교육용으로 제작되었습니다.  
+- 디자인은 실제 당근마켓과 다를 수 있습니다.  
+
+---
+
