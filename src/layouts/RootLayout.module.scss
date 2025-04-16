@@ -1,13 +1,19 @@
 .layout {
-  .main {
-    flex: 1;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 5rem 2rem 2rem;
-  }
 
-  .footer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .header {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 1rem;
+
     .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem;
     }
   }
-}
+
+

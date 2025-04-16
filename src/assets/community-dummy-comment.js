@@ -1,0 +1,22 @@
+export const comments = [
+  { id: 1, user_id: 7, parent_id: 1, content: "국밥에는 깍두기 국물이제", date: "1시간 전" },
+  { id: 2, user_id: 3, parent_id: 1, content: "정구지 제대로 안넣어묵나 개라슥아", date: "3시간 전" },
+  { id: 3, user_id: 9, parent_id: 2, content: "실물보다 사진이 더 좋아요.", date: "5시간 전" },
+  { id: 4, user_id: 4, parent_id: 2, content: "직거래 가능한가요?", date: "1일 전" },
+  { id: 5, user_id: 2, parent_id: 3, content: "후기 보고 갔어요. 추천합니다!", date: "2일 전" },
+  { id: 6, user_id: 1, parent_id: 3, content: "오늘 미용 가능하신가요?", date: "1시간 전" },
+  { id: 7, user_id: 10, parent_id: 4, content: "친구들이 어느 정도 있나요?", date: "4시간 전" },
+  { id: 8, user_id: 6, parent_id: 4, content: "리뷰 믿고 갔습니다~", date: "6일 전" },
+  { id: 9, user_id: 5, parent_id: 5, content: "친절하셔서 기분 좋았어요!", date: "2시간 전" },
+  { id: 10, user_id: 8, parent_id: 5, content: "빠른 후기 감사해요.", date: "3일 전" },
+  { id: 11, user_id: 3, parent_id: 6, content: "다음에도 달리고 싶어요.", date: "5일 전" },
+  { id: 12, user_id: 2, parent_id: 6, content: "후기 남깁니다. 만족해요!", date: "1시간 전" },
+  { id: 13, user_id: 9, parent_id: 7, content: "실물 사진 더 볼 수 있을까요?", date: "2일 전" },
+  { id: 14, user_id: 10, parent_id: 7, content: "지금 세탁 가능할까요?", date: "30분 전" },
+  { id: 15, user_id: 1, parent_id: 8, content: "상세 정보 부탁드려요.", date: "1일 전" },
+  { id: 16, user_id: 4, parent_id: 8, content: "가격 조정 가능할까요?", date: "8시간 전" },
+  { id: 17, user_id: 6, parent_id: 9, content: "방금 결제했습니다!", date: "15분 전" },
+  { id: 18, user_id: 7, parent_id: 9, content: "감사합니다 잘 쓸게요!", date: "6시간 전" },
+  { id: 19, user_id: 8, parent_id: 10, content: "후기 남겨요! 만족도 최상!", date: "4일 전" },
+  { id: 20, user_id: 5, parent_id: 10, content: "리뷰 신뢰도 높네요. 굿!", date: "2일 전" }
+];
