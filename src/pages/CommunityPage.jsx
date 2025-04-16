@@ -12,7 +12,6 @@ const CommunityPage = () => {
   const [searchParams] = useSearchParams();
 
   const category = searchParams.get('category') || 'all';
-  const sort = searchParams.get('sort') || 'latest';
 
   // 옵셔널 체이닝 (?.): 값이 존재하면 적용, 존재하지 않으면 실행하지 않음.
   const search = searchParams.get('search')?.toLowerCase() || '';
@@ -40,11 +39,6 @@ const CommunityPage = () => {
                 (post) =>
                   post.title.toLowerCase().includes(search) ||
                   post.content.toLowerCase().includes(search),
-              )
-              .sort((a, b) =>
-                sort === 'latest'
-                  ? new Date(b.realDate) - new Date(a.date)
-                  : new Date(a.date) - new Date(b.date),
               )
               .map((post) => (
                 <PostCard key={post.id} post={post} />
