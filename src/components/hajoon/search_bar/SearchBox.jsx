@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import styles from './SearchBox.module.scss';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+
 const SearchBox = () => {
+  const navigate = useNavigate();
+
   const [isClick, setIsClick] = useState(false);
 
   const [inputValue, setInputValue] = useState('');
@@ -15,7 +19,8 @@ const SearchBox = () => {
     '동네업체',
     '알바',
     '부동산',
-    '자동차',
+    '중고차차',
+    '동네생활',
     '모임',
   ];
 
@@ -79,7 +84,46 @@ const SearchBox = () => {
             </button>
           )}
 
-          <button className={styles.ArrowButton}>
+          <button
+            className={styles.ArrowButton}
+            onClick={(e) => {
+              e.preventDefault();
+
+              if (inputValue.trim()) {
+                let path = '';
+
+                switch (selectedCategory) {
+                  case '중고거래':
+                    path = 'used-items';
+                    break;
+                  case '알바':
+                    path = 'work';
+                    break;
+                  case '부동산':
+                    path = 'house';
+                    break;
+                  case '중고차':
+                    path = 'car';
+                    break;
+                  case '동네생활':
+                    path = 'community';
+                    break;
+                  case '동네업체':
+                    path = 'hometown';
+                    break;
+                  case '모임':
+                    path = 'crew';
+                    break;
+                  default:
+                    path = 'search';
+                }
+
+                navigate(
+                  `/${path}?search=${encodeURIComponent(inputValue.trim())}`,
+                );
+              }
+            }}
+          >
             <svg
               viewBox='0 0 24 24'
               fill='none'
