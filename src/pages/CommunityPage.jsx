@@ -3,6 +3,7 @@ import styles from './CommunityPage.module.scss';
 import { posts } from '../assets/community-dummy-data';
 import { useSearchParams } from 'react-router-dom';
 import SideMenu from '../components/hoyoung/SideMenu';
+import NoSearchResult from '../components/hoyoung/NoSearchResult';
 
 const CommunityPage = () => {
   // ?뒤에 값(쿼리스트링) 읽는법
@@ -12,12 +13,22 @@ const CommunityPage = () => {
   const [searchParams] = useSearchParams();
 
   const category = searchParams.get('category') || 'all';
+  const hot = searchParams.get('hot') || 'none';
 
   // 옵셔널 체이닝 (?.): 값이 존재하면 적용, 존재하지 않으면 실행하지 않음.
   const search = searchParams.get('search')?.toLowerCase() || '';
 
   const categorys = [...new Set(posts.map((post) => post.category))];
-
+  let filteredpost = posts
+    .filter((post) => category === 'all' || post.category === category)
+    .filter(
+      (post) =>
+        post.title.toLowerCase().includes(search) ||
+        post.content.toLowerCase().includes(search),
+    );
+  if (hot == 'hot') {
+    filteredpost = filteredpost.sort((a, b) => b.likes - a.likes);
+  }
   return (
     <div>
       <div className={styles.breadcrumb}>
@@ -31,16 +42,9 @@ const CommunityPage = () => {
         </div>
         <div className={styles.blog}>
           <div>
-            {posts
-              .filter(
-                (post) => category === 'all' || post.category === category,
-              )
-              .filter(
-                (post) =>
-                  post.title.toLowerCase().includes(search) ||
-                  post.content.toLowerCase().includes(search),
-              )
-              .map((post) => (
+            {filteredpost.length == 0 && <NoSearchResult />}
+            {filteredpost.length > 0 &&
+              filteredpost.map((post) => (
                 <PostCard key={post.id} post={post} />
               ))}
           </div>
