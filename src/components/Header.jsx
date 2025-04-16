@@ -4,16 +4,18 @@ import { useNavigate } from 'react-router-dom';
 import { SlArrowDown } from 'react-icons/sl';
 import { GoArrowUpRight } from 'react-icons/go';
 import { Link } from 'react-router-dom';
-
+import { useLocation } from 'react-router-dom';
 import { BiSearch } from 'react-icons/bi';
 import { IoLocationOutline } from 'react-icons/io5';
 import SearchWithCategoryDropdown from './SearchWithCategoryDropdown';
 import { IoIosArrowDown } from 'react-icons/io';
 import SearchButton from './SearchButton';
 
-import QrCodeModal from './modal/QrCodeModal'
+import QrCodeModal from './modal/QrCodeModal';
 
 const Header = () => {
+  const location = useLocation();
+  const isMainPage = location.pathname === '/';
   const navigate = useNavigate();
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [showBorder, setShowBorder] = useState(false);
@@ -145,7 +147,7 @@ const Header = () => {
 
           {/* 중간: 메뉴 */}
           <div className={styles.center}>
-            {!showSearchOnly && (
+            {!isMainPage && (
               <nav className={styles.menu}>
                 {menuItems.map((item, index) => {
                   const isActive = hoveredIndex === index;
@@ -235,7 +237,6 @@ const Header = () => {
             >
               <BiSearch size={24} />
             </span>
-
             <button className={styles.downloadBtn} onClick={openQrModal}>
               앱 다운로드
             </button>
