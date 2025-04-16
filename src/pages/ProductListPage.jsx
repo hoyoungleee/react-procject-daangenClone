@@ -90,7 +90,7 @@ const ProductList = () => {
     ? [...initialLocations, ...remainingLocations]
     : initialLocations;
 
-  return (
+   return (
     <div className={styles.productListContainer}>
       <div className={styles.headerSection}>
         <div className={styles.navigation}>
@@ -212,29 +212,35 @@ const ProductList = () => {
       </div>
 
       <div className={styles.productListWrapper}>
-        <div className={styles.productList}>
-          {displayedProducts.map((product) => (
-            <Link
-              to={`/products/${product.id}`}
-              key={product.id}
-              className={styles.productItem}
-            >
-              <div className={styles.imageContainer}>
-                <img
-                  src={product.slides?.[0] || '/assets/default-image.jpg'}
-                  alt={product.title}
-                />
-              </div>
-              <div className={styles.productInfo}>
-                <h3 className={styles.productTitle}>{product.title}</h3>
-                <div className={styles.productPrice}>{product.price}</div>
-                <div className={styles.productLocation}>{product.sellerData.location}</div>
-              </div>
-            </Link>
-          ))}
-        </div>
+        {filteredProducts.length === 0 && query.trim() !== '' ? (
+          <div className={styles.noResults}>
+            검색된 상품이 없습니다.
+          </div>
+        ) : (
+          <div className={styles.productList}>
+            {displayedProducts.map((product) => (
+              <Link
+                to={`/products/${product.id}`}
+                key={product.id}
+                className={styles.productItem}
+              >
+                <div className={styles.imageContainer}>
+                  <img
+                    src={product.slides?.[0] || '/assets/default-image.jpg'}
+                    alt={product.title}
+                  />
+                </div>
+                <div className={styles.productInfo}>
+                  <h3 className={styles.productTitle}>{product.title}</h3>
+                  <div className={styles.productPrice}>{product.price}</div>
+                  <div className={styles.productLocation}>{product.sellerData.location}</div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
 
-        {hasMore && (
+        {hasMore && filteredProducts.length > 0 && (
           <button className={styles.loadMoreButton} onClick={handleLoadMore}>
             상품 더 보기
           </button>
