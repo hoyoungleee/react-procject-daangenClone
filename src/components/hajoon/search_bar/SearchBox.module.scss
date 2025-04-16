@@ -114,14 +114,15 @@ button:hover {
 
 .clearButton {
   border-radius: 100%;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 24px;
+  height: 24px;
   display: flex;
   justify-content: center;
-  align-items: centers;
+  align-items: center;
   border-color: transparent;
   align-self: center;
   color: white;
   background-color: #afb0b1;
   opacity: 0.5;
+  flex-grow: 0 !important;
 }
